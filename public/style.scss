@@ -1,0 +1,134 @@
+@mixin justifier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+
+body {
+  width: 98vw;
+  height: 97vh;
+  background-image: url('https://dl.dropbox.com/s/5hqbjkhskrz6c47/night_layered.jpg');
+  background-repeat: no-repeat;
+  background-color: black;
+  background-position: center;
+  background-size: contain;
+  transition-property: background-image;
+  transition-duration: 2s;
+  font-family: 'Great Vibes', cursive;
+}
+#main-parent {
+  height: auto;
+  width: 100%;
+  @include justifier;
+}
+#cover {
+  width: auto;
+  min-width: 500px;
+  height: auto;
+  background-color: rgba(140, 140, 140, 0.6);
+  border-radius: 10px;
+}
+#add-player {
+  font-family: 'Architects Daughter', cursive;
+  font-weight: bold;
+  font-size: 18px;
+  width: 150px;
+  position: absolute;
+  top: 40px;
+  left: 90px;
+}
+#profiles {
+  @include justifier;
+  justify-content: space-around;
+  margin: 20px;
+}
+.frame {
+  margin: 40px;
+  position: relative;
+  height: 200px;
+  width: 200px;
+  @include justifier;
+}
+.initials {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  margin-top: 20%;
+  font-size: 55px;
+}
+#create {
+  font-family: 'Architects Daughter', cursive;
+  font-weight: bold;
+  font-size: 18px;
+}
+#delete {
+  font-family: 'Architects Daughter', cursive;
+  font-weight: bold;
+  font-size: 18px;
+}
+button {
+  border-radius: 6px;
+  background-color: rgba(140, 140, 140, 0.9);
+}
+#kill {
+  // display: none;
+  font-family: 'Architects Daughter', cursive;
+  font-weight: bold;
+  font-size: 18px;
+  width: 100px;
+}
+#rip-one {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 40px;
+}
+#rip-one-name {
+  position: absolute;
+}
+#rip-one-saying {
+  position: absolute;
+  padding-top: 75px;
+  font-family: serif;
+}
+#profile-one {
+  height: 300px;
+}
+#profileRepeater {
+  height: 400px;
+}
+.custom-fade.ng-enter  {
+    animation:3s anim_enter;
+    position:absolute;
+}
+@keyframes anim_enter {
+    from {
+        // width:110%;
+        opacity: 0;
+    }
+    to {
+        // width:100%;
+        opacity: .6;
+    }
+}
+
+.custom-fade.ng-leave{
+  animation:3s anim_leave;
+  position:absolute;
+}
+
+@keyframes anim_leave {
+  from {
+      opacity: .6;
+  }
+  to {
+      opacity: 0;
+  }
+}
