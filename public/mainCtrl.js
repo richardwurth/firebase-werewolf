@@ -1,7 +1,17 @@
 angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth){
   var ref = firebase.database().ref().child('profiles');
+  var secondRef = firebase.database().ref();
+  var firebaseObj = $firebaseObject(secondRef);
+  console.log(firebaseObj);
+  let testLine = "Lerium ipsum";
+  firebaseObj.thing = testLine;
+
   // var arr = $firebaseArray(ref);
-  $scope.profiles = $firebaseArray(ref);
+  // $scope.profiles = $firebaseArray(ref);
+  firebaseArr = $firebaseArray(ref);
+  console.log(firebaseArr);
+
+
   // var query = profilesRef.orderByChild("timestamp").limitToLast(25);
   // $scope.filteredProfiles = $firebaseArray(query);
   // $scope.data.firstName = 'Richard';
@@ -17,50 +27,75 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     // $scope.profiles.$add(profiles);
     // $scope.data.$save($scope.data.players);
     // console.log($scope.profiles[0][0].firstName);
-    $scope.removalTest = function() {
-      $scope.profiles.$remove($scope.profiles[0]);
-      // $scope.profiles.$add(profiles[0]);
-      // $scope.profileTracker = $scope.profiles[0];
-      console.log($scope.profiles);
-      console.log(profiles);
-    };
-    $scope.firebaseTest = function() {
-      $scope.profiles.$remove($scope.profiles[0]);
-      $scope.profiles.$add(profiles);
-      // $scope.profileTracker = $scope.profiles[0];
-      console.log($scope.profiles);
-      console.log(profiles);
-    };
-    $scope.refreshTest = function() {
-      console.log("Success!");
-      setInterval(function(){
-        $scope.profiles.$remove($scope.profiles[0]);
-        $scope.profiles.$add(profiles);
-        $scope.profileTracker = $scope.profiles[0];
-        // $scope.firebaseTest();
-        // console.log($scope.profileTracker);
-        // return $scope.profileTracker = $scope.profiles[0];
-        console.log(profiles);
-        console.log($scope.profiles);
-      }, 5000);
-  };
+  //   $scope.removalTest = function() {
+  //     $scope.profiles.$remove($scope.profiles[0]);
+  //     // $scope.profiles.$add(profiles[0]);
+  //     // firebaseArr.profiles = $scope.profiles[0];
+  //     console.log($scope.profiles);
+  //     console.log(profiles);
+  //   };
+  //   $scope.firebaseTest = function() {
+  //     $scope.profiles.$remove($scope.profiles[0]);
+  //     $scope.profiles.$add(profiles);
+  //     // firebaseArr.profiles = $scope.profiles[0];
+  //     console.log($scope.profiles);
+  //     console.log(profiles);
+  //   };
+  //   $scope.refreshTest = function() {
+  //     console.log("Success!");
+  //     setInterval(function(){
+  //       $scope.profiles.$remove($scope.profiles[0]);
+  //       $scope.profiles.$add(profiles);
+  //       firebaseArr.profiles = $scope.profiles[0];
+  //       // $scope.firebaseTest();
+  //       // console.log(firebaseArr.profiles);
+  //       // return firebaseArr.profiles = $scope.profiles[0];
+  //       console.log(profiles);
+  //       console.log($scope.profiles);
+  //     }, 5000);
+  // };
+  let monitorCheck = false;
+  firebaseObj.timer = monitorCheck;
+
+  firebaseObj.daytime = false;
+  // firebaseObj.$save();
+
+  var unwatch = firebaseObj.$watch(function(){
+    if (firebaseObj.daytime === false) {
+      $('body').css('background-image','url("https://dl.dropbox.com/s/12i9f4kxm9uz71c/day_layered.jpg")');
+      $scope.timeOfDay = "Night";
+    } else if (firebaseObj.daytime === true) {
+      $('body').css('background-image','url("https://dl.dropbox.com/s/5hqbjkhskrz6c47/night_layered.jpg")');
+      $scope.timeOfDay = "Day";
+    }
+    // $scope.profileTracker[0] = firebaseArr.profiles;
+
+    console.log(firebaseArr.profiles);
+    console.log($scope.profileTracker);
+    // firebaseObj.$save();
+  });
+
+
+
   $scope.listen = function() {
-    console.log("Success!");
-    setInterval(function(){
-      // $scope.profiles.$remove($scope.profiles[0]);
-      // $scope.profiles.$add(profiles);
-      $scope.profileTracker = $scope.profiles[0];
-      // $scope.firebaseTest();
-      // console.log($scope.profileTracker);
-      // return $scope.profileTracker = $scope.profiles[0];
-      console.log(profiles);
-      console.log($scope.profiles);
-    }, 5000);
+     firebaseObj.timer = !firebaseObj.timer;
+     firebaseObj.$save();
+    // console.log("Success!");
+    // setInterval(function(){
+    //   // $scope.profiles.$remove($scope.profiles[0]);
+    //   // $scope.profiles.$add(profiles);
+    //   firebaseArr.profiles = $scope.profiles[0];
+    //   // $scope.firebaseTest();
+    //   // console.log(firebaseArr.profiles);
+    //   // return firebaseArr.profiles = $scope.profiles[0];
+    //   console.log(profiles);
+    //   console.log($scope.profiles);
+    // }, 5000);
 };
 
 //   const firebaseTest = function() {
 //   console.log($scope.profiles);
-//   $scope.profileTracker = $scope.profiles[0];
+//   firebaseArr.profiles = $scope.profiles[0];
 // };
 
   // $scope.profile = $firebaseObject(ref.child('profiles').child('Object'));
@@ -74,9 +109,12 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
 
   // $scope.profiles = ["profile.html"];
   let profiles = [];
-  // $scope.profileTracker = [];
-
   $scope.profileTracker = [];
+  // firebaseArr.profiles = [];
+
+  // firebaseArr.profiles = [];
+  // firebaseArr.profiles = firebaseArr.profiles;
+
 
   // $scope.refreshTest = function(){
   // };
@@ -97,7 +135,7 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     let newPerson = {
       fullNameOne: fullNameOne,
       firstName: fullNameOne,
-      // $scope.profileTracker[index].firstName = fullNameOne;
+      // firebaseArr.profiles[index].firstName = fullNameOne;
       lastOne: lastOne,
       firstOne: firstOne,
       custom: true,
@@ -116,16 +154,20 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       // },
 
 
-      // $scope.profileTracker[index].lastOne = splitNameOne[1].charAt(0).toUpperCase()+".";
-      // $scope.profileTracker[index].firstOne = splitNameOne[0].charAt(0).toUpperCase()+".";
+      // firebaseArr.profiles[index].lastOne = splitNameOne[1].charAt(0).toUpperCase()+".";
+      // firebaseArr.profiles[index].firstOne = splitNameOne[0].charAt(0).toUpperCase()+".";
 
     };
     // });
-    // $scope.profileTracker.push(newPerson);
+    // firebaseArr.profiles.push(newPerson);
     profiles.push(newPerson);
     $scope.profileTracker = profiles;
+    firebaseArr.profiles = profiles;
     console.log($scope.profileTracker);
-    // $scope.data.showMe = $scope.profileTracker;
+    console.log(firebaseArr.profiles);
+    firebaseArr.$remove(profiles);
+    firebaseArr.$add(profiles);
+    // $scope.data.showMe = firebaseArr.profiles;
     // console.log($scope.data);
     // $scope.data.save();
   };
@@ -187,28 +229,34 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
 
   $scope.profileFrame = "http://img06.deviantart.net/b2bc/i/2015/202/b/7/638_surf_frame_by_tigers_stock-d926rr4.png";
   // Below is the daytime and night time changing function
-  let daytime = false;
+  // let daytime = false;
   // var nextTime = "Day";
   $scope.timeOfDay = "Day";
 
   $scope.backgroundChange = function(){
-    let passwordCheck = prompt("Please enter the Master Password");
-    if (passwordCheck === masterPassword) {
-      if (daytime === false) {
-        $('body').css('background-image','url("https://dl.dropbox.com/s/12i9f4kxm9uz71c/day_layered.jpg")');
-        daytime = true;
-        $scope.timeOfDay = "Night";
-        // nextTime = "Night"
-      } else {
-        $('body').css('background-image','url("https://dl.dropbox.com/s/5hqbjkhskrz6c47/night_layered.jpg")');
-        daytime = false;
-        $scope.timeOfDay = "Day";
-        // nextTime = "Day";
-      }
-    } else {
-      alert("Incorrect password was entered.");
-    }
-  };
+    firebaseObj.daytime = !firebaseObj.daytime;
+    firebaseObj.$save();
+};
+
+
+  // $scope.backgroundChange = function(){
+  //   let passwordCheck = prompt("Please enter the Master Password");
+  //   if (passwordCheck === masterPassword) {
+  //     if (daytime === false) {
+  //       $('body').css('background-image','url("https://dl.dropbox.com/s/12i9f4kxm9uz71c/day_layered.jpg")');
+  //       daytime = true;
+  //       $scope.timeOfDay = "Night";
+  //       // nextTime = "Night"
+  //     } else {
+  //       $('body').css('background-image','url("https://dl.dropbox.com/s/5hqbjkhskrz6c47/night_layered.jpg")');
+  //       daytime = false;
+  //       $scope.timeOfDay = "Day";
+  //       // nextTime = "Day";
+  //     }
+  //   } else {
+  //     alert("Incorrect password was entered.");
+  //   }
+  // };
   // Above is the daytime and night time changing function
 
 });
