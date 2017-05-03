@@ -11,6 +11,9 @@
   <!-- update the version number as needed -->
 </head>
 <body ng-controller='mainCtrl'>
+  <button name="button">General Testing</button>
+  <button ng-click="login()" name="button">Login</button>
+  <h1 class="hidden">ONLY YOU CAN SEE THIS!</h1>
   <button ng-click="passwordSet()" id="password-set">Set Master Password</button>
   <button ng-click="backgroundChange()" type="button" name="button">Change to {{timeOfDay}}</button>
   <button ng-click="firebaseTest()" name="button">Test Firebase Input</button>
@@ -22,39 +25,45 @@
     <div id="cover">
       <button id="add-player" ng-click="addProfile(0)" name="button">Add Player</button>
       <div id="profiles">
-        <div id="profileRepeater" submit-required="true" ng-model="user.Name" ng-change="profile.$save()" ng-repeat="profile in profileTracker track by $index">
+        <div id="profileRepeater" submit-required="true" ng-repeat="profile in profileTracker track by $index">
           <ng-include src=" 'profile.html' "></ng-include>
         </div>
-            </div>
-          </div>
-
-        <!--  -->
-
-        <!-- <div class="frame" id="profile-two"><img src={{profileFrame}} height=250px alt=""></div>
-        <div class="frame" id="profile-three"><img src={{profileFrame}} height=250px alt=""></div>
-        <div class="frame" id="profile-four"><img src={{profileFrame}} height=250px alt=""></div>
-        <div class="frame" id="profile-five"><img src={{profileFrame}} height=250px alt=""></div> -->
       </div>
     </div>
-  </div>
+    <div class="custom-fade" id="chatBump">
+      <a style="position:absolute; top:10px" ng-click="showChat()"><img src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
+      <div id="chatWindow" class="custom-fade" ng-if={{showingChat}}>
+        <input id="chatInput" type="text" placeholder="Type Message Here" name="" value="">
+      </div>
+    </div>
+    <!-- ng-change="profile.$save()" ng-model="user.Name"-->
+    <!--  -->
 
-  <script defer src="/__/firebase/3.8.0/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/3.8.0/firebase-auth.js"></script>
-  <script defer src="/__/firebase/3.8.0/firebase-database.js"></script>
-  <!-- <script defer src="/__/firebase/3.8.0/firebase-messaging.js"></script> -->
-  <script defer src="/__/firebase/3.8.0/firebase-storage.js"></script>
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="https://code.angularjs.org/1.6.1/angular-animate.js"></script>
-  <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
-  <script src="./app.js"></script>
-  <script src="./mainCtrl.js"></script>
-  <script>
+    <!-- <div class="frame" id="profile-two"><img src={{profileFrame}} height=250px alt=""></div>
+    <div class="frame" id="profile-three"><img src={{profileFrame}} height=250px alt=""></div>
+    <div class="frame" id="profile-four"><img src={{profileFrame}} height=250px alt=""></div>
+    <div class="frame" id="profile-five"><img src={{profileFrame}} height=250px alt=""></div> -->
+  </div>
+</div>
+</div>
+
+<script defer src="/__/firebase/3.8.0/firebase-app.js"></script>
+<!-- include only the Firebase features as you need -->
+<script defer src="/__/firebase/3.8.0/firebase-auth.js"></script>
+<script defer src="/__/firebase/3.8.0/firebase-database.js"></script>
+<!-- <script defer src="/__/firebase/3.8.0/firebase-messaging.js"></script> -->
+<script defer src="/__/firebase/3.8.0/firebase-storage.js"></script>
+<!-- initialize the SDK after all desired features are loaded -->
+<script defer src="/__/firebase/init.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://code.angularjs.org/1.6.1/angular-animate.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+<script src="./app.js"></script>
+<script src="./mainCtrl.js"></script>
+<script>
   var config = {
     apiKey: "AIzaSyCl6pT9Js_n5q5AiVMde37zlVeMsX29-sQ",
     authDomain: "werewolf-6f4e7.firebaseapp.com",
@@ -62,6 +71,6 @@
     storageBucket: "gs://werewolf-6f4e7.appspot.com"
   };
   firebase.initializeApp(config);
-  </script>
+</script>
 </body>
 </html>
