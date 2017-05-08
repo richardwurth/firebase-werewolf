@@ -11,7 +11,8 @@
   <!-- update the version number as needed -->
 </head>
 <body ng-controller='mainCtrl'>
-  <button name="button">General Testing</button>
+  <button ng-click="generalTest()" name="button">General Testing</button>
+  <button ng-click="getRole()" name="button">Get My Role Chat</button>
   <button ng-click="login()" name="button">Login</button>
   <h1 class="hidden">ONLY YOU CAN SEE THIS!</h1>
   <button ng-click="passwordSet()" id="password-set">Set Master Password</button>
@@ -30,12 +31,31 @@
         </div>
       </div>
     </div>
-    <div class="custom-fade" id="chatBump">
-      <a style="position:absolute; top:10px" ng-click="showChat()"><img src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
-      <div id="chatWindow" class="custom-fade" ng-if={{showingChat}}>
-        <input id="chatInput" type="text" placeholder="Type Message Here" name="" value="">
+    <div id="chatBump">
+      <a style="position:absolute; top:10px" ng-click="showChat()"><img id="arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
+      <div class="scrollbar style-3" id="chatWindow" class="custom-fade">
+        <h1 style="text-align: center; margin: 0px">The Village</h1>
+        <ul id="chat-content" style="font-family: monospace">
+          <li ng-repeat="chat in chatLog track by $index"><span style="font-weight: bold">{{chat.username}}:</span> {{chat.message}}</li>
+        </ul>
       </div>
+      <form id="form" onsubmit="return false;">
+        <input type="text" id="userInput" />
+        <input id="chatInput" type="submit" ng-click="othername()" />
+      </form>
     </div>
+    <div ng-if="isWerewolf" id="werewolf-chatBump">
+      <a style="position:absolute; top:10px" ng-click="showWerewolfChat()"><img id="werewolf-arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
+      <div class="scrollbar style-3" id="werewolf-chatWindow" class="custom-fade">
+        <h1 style="text-align: center; margin: 0px">Werewolves</h1>
+        <ul id="chat-content" style="font-family: monospace">
+          <li ng-repeat="werewolfchat in werewolfchatLog track by $index"><span style="font-weight: bold">{{werewolfchat.username}}:</span> {{werewolfchat.message}}</li>
+        </ul>
+      </div>
+      <form id="werewolf-form" onsubmit="return false;">
+        <input type="text" id="werewolfUserInput" />
+        <input id="chatInput" type="submit" ng-click="werewolfSend()" />
+      </form>
     <!-- ng-change="profile.$save()" ng-model="user.Name"-->
     <!--  -->
 
@@ -44,6 +64,22 @@
     <div class="frame" id="profile-four"><img src={{profileFrame}} height=250px alt=""></div>
     <div class="frame" id="profile-five"><img src={{profileFrame}} height=250px alt=""></div> -->
   </div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<div class="scrollbar style-3" id="notices">
+  <div class="scrollbar style-3" id="chatWindow" class="custom-fade">
+  </div>
+
+  <h1>Notices</h1>
+  <ul id="chat-content" style="font-family: monospace">
+    <li ng-repeat="announcement in announcementsLogs track by $index"><h2>{{announcement.message}}</h2></li>
+  </ul>
+</div>
+<form ng-if="publicNotice" id="announcements-form" onsubmit="return false;">
+  <input type="text" id="announcementsInput" />
+  <input id="announcementsInput" type="submit" ng-click="announcementsSend()" />
+</form>
+</div>
 </div>
 </div>
 

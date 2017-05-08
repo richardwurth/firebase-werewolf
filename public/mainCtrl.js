@@ -1,11 +1,16 @@
 angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth){
   var ref = firebase.database().ref().child('profiles');
+  var chatRef = firebase.database().ref().child('chats');
+  var werewolfChatRef = firebase.database().ref().child('werewolfChat')
+  var announcementsRef = firebase.database().ref().child('announcements')
   var secondRef = firebase.database().ref();
   var firebaseObj = $firebaseObject(secondRef);
   let testLine = "Lerium ipsum";
-  firebaseObj.thing = testLine;
   var firebaseArr = $firebaseArray(ref);
   firebaseArr.profiles = firebaseArr;
+  var firebaseChats = $firebaseArray(chatRef);
+  var firebaseWerewolfChats = $firebaseArray(werewolfChatRef);
+  var firebaseAnnouncements = $firebaseArray(announcementsRef);
 
   $scope.login = function(){
     let temp = prompt("What's the password?");
@@ -14,10 +19,105 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     }
   };
 
-  $scope.showingChat = false;
+  let username = prompt("What is your first name?");
+  $scope.chatLog = $firebaseArray(chatRef);
+  $scope.werewolfchatLog = $firebaseArray(werewolfChatRef);
+  $scope.announcementsLogs = $firebaseArray(announcementsRef);
+
+  let werewolfPassword = "TEST";
+
+  $scope.isWerewolf = false;
+  $scope.publicNotice = false;
+
+
+  $scope.getRole = function(){
+    let declaration = prompt("What is the role that you have been given?").toUpperCase();
+    if (declaration == "WEREWOLF"){
+      let verify = prompt("Please enter the password provided to you by the Game Master.").toUpperCase();
+      if (verify == werewolfPassword) {
+        $scope.isWerewolf = true;
+        console.log($scope.isWerewolf);
+      } else {
+        alert("Nice try.");
+      }
+    } else {
+      console.log("This is incorrect");
+      console.log(declaration);
+      console.log($scope.isWerewolf);
+    }
+  };
+
+  let adminPassword = "UR MOM";
+
+  $scope.generalTest = function(){
+      let verify = prompt("Please enter the Admin Password").toUpperCase();
+      if (verify == adminPassword) {
+        $scope.isWerewolf = true;
+        $scope.publicNotice = true;
+      } else {
+        alert("Nice try.");
+      }
+  };
+
+  $scope.othername = function(){
+      var input = document.getElementById("userInput").value;
+      var temp = {
+        username : username,
+        message : input
+      };
+      $scope.chatLog.$add(temp);
+      console.log($scope.chatLog);
+      document.getElementById("userInput").value = "";
+  };
+  $scope.werewolfSend = function(){
+    var input = document.getElementById("werewolfUserInput").value;
+    var temp = {
+      username : username,
+      message : input
+    };
+    $scope.werewolfchatLog.$add(temp);
+    // console.log($scope.chatLog);
+    document.getElementById("werewolfUserInput").value = "";
+  };
+
+  $scope.announcementsSend = function(){
+    var input = document.getElementById("announcementsInput").value;
+    var temp = {
+      message : input
+    };
+    $scope.announcementsLogs.$add(temp);
+    // console.log($scope.chatLog);
+    document.getElementById("announcementsInput").value = "";
+  };
+
+  let showingChat = false;
   $scope.showChat = function() {
-    $('#chatBump').css('animation-name','animate_bump');
-    $scope.showingChat = !$scope.showingChat;
+    if (showingChat === false){
+      $('#chatBump').css('left','235px');
+      $('#arrow-direction').css('transform','rotate(' + 180 + 'deg)');
+      showingChat = true;
+    } else {
+      $('#chatBump').css('left','0px');
+      $('#arrow-direction').css('transform','rotate(' + 0 + 'deg)');
+      showingChat = false;
+    }
+  };
+
+  let showingWerewolfChat = false;
+  $scope.showWerewolfChat = function() {
+    if (showingWerewolfChat === false){
+      $('#werewolf-chatBump').css('right','235px');
+      $('#werewolf-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
+      $('#werewolf-chatWindow').css('width','230px');
+      $('#werewolf-form').show();
+      showingWerewolfChat = true;
+    } else {
+      $('#werewolf-chatBump').css('right','0px');
+      $('#werewolf-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
+      $('#werewolf-chatWindow').css('width','0px');
+      $('#werewolf-form').hide();
+      showingWerewolfChat = false;
+    }
   };
 
   let monitorCheck = false;
@@ -104,12 +204,16 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   var unwatch = firebaseObj.$watch(function(){
     if (firebaseObj.daytime === false) {
       $('body').css('background-image','url("https://dl.dropbox.com/s/12i9f4kxm9uz71c/day_layered.jpg")');
+      $('#form').show();
+      $('#werewolf-chatBump').hide();
       $scope.timeOfDay = "Night";
     } else if (firebaseObj.daytime === true) {
       $('body').css('background-image','url("https://dl.dropbox.com/s/5hqbjkhskrz6c47/night_layered.jpg")');
+      $('#werewolf-chatBump').show();
+      $('#form').hide();
       $scope.timeOfDay = "Day";
     }
-
+    // $scope.chatLog = firebaseObj.thing;
 
   });
   let wasClicked = false;
