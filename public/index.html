@@ -11,20 +11,20 @@
   <!-- update the version number as needed -->
 </head>
 <body ng-controller='mainCtrl'>
-  <button ng-click="generalTest()" name="button">General Testing</button>
-  <button ng-click="getRole()" name="button">Get My Role Chat</button>
-  <button ng-click="login()" name="button">Login</button>
-  <h1 class="hidden">ONLY YOU CAN SEE THIS!</h1>
-  <button ng-click="passwordSet()" id="password-set">Set Master Password</button>
-  <button ng-click="backgroundChange()" type="button" name="button">Change to {{timeOfDay}}</button>
-  <button ng-click="firebaseTest()" name="button">Test Firebase Input</button>
-  <button ng-click="removalTest()" name="button">Removal</button>
-  <button ng-click="refreshTest()" name="button">Test Refresh</button>
-  <button ng-click="listen()" name="button">listen</button>
-  <h1 style="color:white">Test Result: {{testResult}}</h1>
+  <!-- <button ng-click="generalTest()" name="button">General Testing</button> -->
+  <button ng-click="getRole()" name="button">Get My Role</button>
+  <button ng-click="generalTest()" name="button">Login</button>
+  <!-- <h1 class="hidden">ONLY YOU CAN SEE THIS!</h1> -->
+  <!-- <button ng-click="passwordSet()" id="password-set">Set Master Password</button> -->
+  <button ng-if="timeChangeButton" ng-click="backgroundChange()" type="button" name="button">Change to {{timeOfDay}}</button>
+  <!-- <button ng-click="firebaseTest()" name="button">Test Firebase Input</button> -->
+  <!-- <button ng-click="removalTest()" name="button">Removal</button> -->
+  <!-- <button ng-click="refreshTest()" name="button">Test Refresh</button> -->
+  <!-- <button ng-click="listen()" name="button">listen</button> -->
+  <!-- <h1 style="color:white">Test Result: {{testResult}}</h1> -->
   <div id="main-parent">
     <div id="cover">
-      <button id="add-player" ng-click="addProfile(0)" name="button">Add Player</button>
+      <button ng-if="addPlayerButton" id="add-player" ng-click="addProfile(0)" name="button">Add Player</button>
       <div id="profiles">
         <div id="profileRepeater" submit-required="true" ng-repeat="profile in profileTracker track by $index">
           <ng-include src=" 'profile.html' "></ng-include>

@@ -28,6 +28,9 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
 
   $scope.isWerewolf = false;
   $scope.publicNotice = false;
+  $scope.showKillButton = false;
+  $scope.addPlayerButton = false;
+  $scope.timeChangeButton = false;
 
 
   $scope.getRole = function(){
@@ -47,13 +50,16 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     }
   };
 
-  let adminPassword = "UR MOM";
+  let adminPassword = "TEST123";
 
   $scope.generalTest = function(){
       let verify = prompt("Please enter the Admin Password").toUpperCase();
       if (verify == adminPassword) {
         $scope.isWerewolf = true;
         $scope.publicNotice = true;
+        $scope.showKillButton = true;
+        $scope.addPlayerButton = true;
+        $scope.timeChangeButton = true;
       } else {
         alert("Nice try.");
       }
@@ -76,7 +82,6 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       message : input
     };
     $scope.werewolfchatLog.$add(temp);
-    // console.log($scope.chatLog);
     document.getElementById("werewolfUserInput").value = "";
   };
 
@@ -86,7 +91,6 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       message : input
     };
     $scope.announcementsLogs.$add(temp);
-    // console.log($scope.chatLog);
     document.getElementById("announcementsInput").value = "";
   };
 
@@ -134,11 +138,9 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   };
   let profiles = [];
   $scope.profileTracker = currentProfiles(firebaseArr.profiles);
-  $scope.testButton = function(){
 
-  };
+
   $scope.profileTracker = profiles;
-
 
   $scope.addProfile = function() {
     let fullNameOne = prompt('What is the Full Name of the player to add?');
@@ -162,11 +164,6 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   };
 
   let masterPassword = "";
-
-  $scope.passwordSet = function(){
-    masterPassword = prompt("Please enter what you would like the password to be set to.");
-    $('#password-set').hide();
-  };
 
   $scope.addOne = function(index){
     let fullNameOne = prompt('What is the Full Name of the player to add?');
@@ -225,10 +222,10 @@ var arrWatch = firebaseArr.$watch(function(){
 
 
 
-  $scope.listen = function() {
-    firebaseObj.timer = !firebaseObj.timer;
-    firebaseObj.$save();
-  };
+  // $scope.listen = function() {
+  //   firebaseObj.timer = !firebaseObj.timer;
+  //   firebaseObj.$save();
+  // };
 
 
   $scope.profileFrame = "http://img06.deviantart.net/b2bc/i/2015/202/b/7/638_surf_frame_by_tigers_stock-d926rr4.png";
