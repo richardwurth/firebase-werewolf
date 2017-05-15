@@ -1,0 +1,15 @@
+<div style="display: flex; flex-direction: column; align-items: center;">
+  <div class="scrollbar style-3" id="notices">
+    <div class="scrollbar style-3" id="chatWindow" class="custom-fade">
+    </div>
+
+    <h1>Notices</h1>
+    <ul id="chat-content" style="font-family: monospace">
+      <li ng-repeat="announcement in announcementsLogs track by $index"><h2>{{announcement.message}}</h2></li>
+    </ul>
+  </div>
+  <form ng-if="publicNotice" id="announcements-form" onsubmit="return false;">
+    <input type="text" id="announcementsInput" />
+    <input id="announcementsInput" type="submit" ng-click="announcementsSend()" />
+  </form>
+</div>

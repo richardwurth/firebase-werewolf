@@ -1,0 +1,11 @@
+<a style="position:absolute; top:10px" ng-click="showChat()"><img id="arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
+<div class="scrollbar style-3" id="chatWindow" class="custom-fade">
+  <h1 style="text-align: center; margin: 0px">The Village</h1>
+  <ul id="chat-content" style="font-family: monospace">
+    <li ng-repeat="chat in chatLog track by $index"><span style="font-weight: bold">{{chat.username}}:</span> {{chat.message}}</li>
+  </ul>
+</div>
+<form id="form" onsubmit="return false;">
+  <input type="text" id="userInput" />
+  <input id="chatInput" type="submit" ng-click="othername()" />
+</form>

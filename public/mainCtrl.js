@@ -32,6 +32,25 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   $scope.addPlayerButton = false;
   $scope.timeChangeButton = false;
 
+  $scope.roleOne = false;
+  $scope.roleOneNewMessage = false;
+
+  $scope.roleTwo = false;
+  $scope.roleTwoNewMessage = false;
+
+  $scope.roleThree = false;
+  $scope.roleThreeNewMessage = false;
+
+  $scope.roleFour = false;
+  $scope.roleFourNewMessage = false;
+
+  $scope.roleFive = false;
+  $scope.roleFiveNewMessage = false;
+
+  $scope.roleSix = false;
+  $scope.roleSixNewMessage = false;
+
+
 
   $scope.getRole = function(){
     let declaration = prompt("What is the role that you have been given?").toUpperCase();

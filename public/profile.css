@@ -1,0 +1,29 @@
+#kill {
+  // display: none;
+  font-family: 'Architects Daughter', cursive;
+  font-weight: bold;
+  font-size: 18px;
+  width: 100px;
+}
+#rip-one {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 40px;
+}
+#rip-one-name {
+  position: absolute;
+}
+#rip-one-saying {
+  position: absolute;
+  padding-top: 75px;
+  font-family: serif;
+}
+#profile-one {
+  height: 300px;
+}
+#profileRepeater {
+  height: 400px;
+}

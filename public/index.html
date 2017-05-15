@@ -4,24 +4,18 @@
   <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="chats.css">
+  <link rel="stylesheet" href="notices.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Werewolf - SR Style</title>
 
-  <!-- update the version number as needed -->
 </head>
 <body ng-controller='mainCtrl'>
-  <!-- <button ng-click="generalTest()" name="button">General Testing</button> -->
   <button ng-click="getRole()" name="button">Get My Role</button>
   <button ng-click="generalTest()" name="button">Login</button>
-  <!-- <h1 class="hidden">ONLY YOU CAN SEE THIS!</h1> -->
-  <!-- <button ng-click="passwordSet()" id="password-set">Set Master Password</button> -->
   <button ng-if="timeChangeButton" ng-click="backgroundChange()" type="button" name="button">Change to {{timeOfDay}}</button>
-  <!-- <button ng-click="firebaseTest()" name="button">Test Firebase Input</button> -->
-  <!-- <button ng-click="removalTest()" name="button">Removal</button> -->
-  <!-- <button ng-click="refreshTest()" name="button">Test Refresh</button> -->
-  <!-- <button ng-click="listen()" name="button">listen</button> -->
-  <!-- <h1 style="color:white">Test Result: {{testResult}}</h1> -->
   <div id="main-parent">
     <div id="cover">
       <button ng-if="addPlayerButton" id="add-player" ng-click="addProfile(0)" name="button">Add Player</button>
@@ -32,64 +26,20 @@
       </div>
     </div>
     <div id="chatBump">
-      <a style="position:absolute; top:10px" ng-click="showChat()"><img id="arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
-      <div class="scrollbar style-3" id="chatWindow" class="custom-fade">
-        <h1 style="text-align: center; margin: 0px">The Village</h1>
-        <ul id="chat-content" style="font-family: monospace">
-          <li ng-repeat="chat in chatLog track by $index"><span style="font-weight: bold">{{chat.username}}:</span> {{chat.message}}</li>
-        </ul>
-      </div>
-      <form id="form" onsubmit="return false;">
-        <input type="text" id="userInput" />
-        <input id="chatInput" type="submit" ng-click="othername()" />
-      </form>
+      <ng-include src=" 'village.html' "></ng-include>
     </div>
     <div ng-if="isWerewolf" id="werewolf-chatBump">
-      <a style="position:absolute; top:10px" ng-click="showWerewolfChat()"><img id="werewolf-arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
-      <div class="scrollbar style-3" id="werewolf-chatWindow" class="custom-fade">
-        <h1 style="text-align: center; margin: 0px">Werewolves</h1>
-        <ul id="chat-content" style="font-family: monospace">
-          <li ng-repeat="werewolfchat in werewolfchatLog track by $index"><span style="font-weight: bold">{{werewolfchat.username}}:</span> {{werewolfchat.message}}</li>
-        </ul>
-      </div>
-      <form id="werewolf-form" onsubmit="return false;">
-        <input type="text" id="werewolfUserInput" />
-        <input id="chatInput" type="submit" ng-click="werewolfSend()" />
-      </form>
-    <!-- ng-change="profile.$save()" ng-model="user.Name"-->
-    <!--  -->
-
-    <!-- <div class="frame" id="profile-two"><img src={{profileFrame}} height=250px alt=""></div>
-    <div class="frame" id="profile-three"><img src={{profileFrame}} height=250px alt=""></div>
-    <div class="frame" id="profile-four"><img src={{profileFrame}} height=250px alt=""></div>
-    <div class="frame" id="profile-five"><img src={{profileFrame}} height=250px alt=""></div> -->
+      <ng-include src=" 'werewolf.html' "></ng-include>
+    </div>
   </div>
-</div>
-<div style="display: flex; flex-direction: column; align-items: center;">
-<div class="scrollbar style-3" id="notices">
-  <div class="scrollbar style-3" id="chatWindow" class="custom-fade">
-  </div>
-
-  <h1>Notices</h1>
-  <ul id="chat-content" style="font-family: monospace">
-    <li ng-repeat="announcement in announcementsLogs track by $index"><h2>{{announcement.message}}</h2></li>
-  </ul>
-</div>
-<form ng-if="publicNotice" id="announcements-form" onsubmit="return false;">
-  <input type="text" id="announcementsInput" />
-  <input id="announcementsInput" type="submit" ng-click="announcementsSend()" />
-</form>
-</div>
+<ng-include src=" 'notices.html' "></ng-include>
 </div>
 </div>
 
 <script defer src="/__/firebase/3.8.0/firebase-app.js"></script>
-<!-- include only the Firebase features as you need -->
 <script defer src="/__/firebase/3.8.0/firebase-auth.js"></script>
 <script defer src="/__/firebase/3.8.0/firebase-database.js"></script>
-<!-- <script defer src="/__/firebase/3.8.0/firebase-messaging.js"></script> -->
 <script defer src="/__/firebase/3.8.0/firebase-storage.js"></script>
-<!-- initialize the SDK after all desired features are loaded -->
 <script defer src="/__/firebase/init.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>

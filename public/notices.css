@@ -1,0 +1,21 @@
+#notices {
+  width: 400px;
+  height: 200px;
+  background-color: rgba(140, 140, 140, 0.7);
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 10px;
+  color: black;
+  overflow: auto;
+}
+#announcements-chatWindow {
+  height: 400px;
+  width: 0px;
+  position: absolute;
+  top: -200px;
+  right: -230px;
+  z-index: 10;
+  overflow: auto;
+  background-color: rgba(140, 140, 140, 0.9);
+  // transition: all .5s;
+}
