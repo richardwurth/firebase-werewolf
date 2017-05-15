@@ -15,6 +15,7 @@
 <body ng-controller='mainCtrl'>
   <button ng-click="getRole()" name="button">Get My Role</button>
   <button ng-click="generalTest()" name="button">Login</button>
+  <button ng-click="newMessageTest()" name="button">New Message</button>
   <button ng-if="timeChangeButton" ng-click="backgroundChange()" type="button" name="button">Change to {{timeOfDay}}</button>
   <div id="main-parent">
     <div id="cover">
@@ -30,6 +31,24 @@
     </div>
     <div ng-if="isWerewolf" id="werewolf-chatBump">
       <ng-include src=" 'werewolf.html' "></ng-include>
+    </div>
+    <div ng-if="roleOne" id="one-chatBump">
+      <ng-include src=" 'role_one.html' "></ng-include>
+    </div>
+    <div ng-if="roleTwo" id="two-chatBump">
+      <ng-include src=" 'role_two.html' "></ng-include>
+    </div>
+    <div ng-if="roleThree" id="three-chatBump">
+      <ng-include src=" 'role_three.html' "></ng-include>
+    </div>
+    <div ng-if="roleFour" id="four-chatBump">
+      <ng-include src=" 'role_four.html' "></ng-include>
+    </div>
+    <div ng-if="roleFive" id="five-chatBump">
+      <ng-include src=" 'role_five.html' "></ng-include>
+    </div>
+    <div ng-if="roleSix" id="six-chatBump">
+      <ng-include src=" 'role_six.html' "></ng-include>
     </div>
   </div>
 <ng-include src=" 'notices.html' "></ng-include>

@@ -1,0 +1,11 @@
+<a style="position:absolute; top:10px" ng-click="showRoleFourChat()"><img id="four-arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
+<div class="scrollbar style-3" id="four-chatWindow" class="custom-fade">
+  <h1 style="text-align: center; margin: 0px">{{roleFourName}}</h1>
+  <ul id="chat-content" style="font-family: monospace">
+    <li ng-repeat="fourchat in fourchatLog track by $index"><span style="font-weight: bold">{{fourchat.username}}:</span> {{fourchat.message}}</li>
+  </ul>
+</div>
+<form id="four-form" onsubmit="return false;">
+  <input type="text" id="fourUserInput" />
+  <input id="chatInput" type="submit" ng-click="fourSend()" />
+</form>

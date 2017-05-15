@@ -1,0 +1,11 @@
+<a style="position:absolute; top:10px" ng-click="showRoleFiveChat()"><img id="five-arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
+<div class="scrollbar style-3" id="five-chatWindow" class="custom-fade">
+  <h1 style="text-align: center; margin: 0px">{{roleFiveName}}</h1>
+  <ul id="chat-content" style="font-family: monospace">
+    <li ng-repeat="fivechat in fivechatLog track by $index"><span style="font-weight: bold">{{fivechat.username}}:</span> {{fivechat.message}}</li>
+  </ul>
+</div>
+<form id="five-form" onsubmit="return false;">
+  <input type="text" id="fiveUserInput" />
+  <input id="chatInput" type="submit" ng-click="fiveSend()" />
+</form>
