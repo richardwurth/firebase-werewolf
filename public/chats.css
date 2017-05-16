@@ -170,7 +170,6 @@
   background-color: rgba(140, 140, 140, 0.6);
   position: absolute;
   right: 0px;
-  top: 280px;
   /*transition: all .5s;*/
 }
 #two-form {
@@ -211,7 +210,6 @@
   width: 30px;
   background-color: rgba(140, 140, 140, 0.6);
   position: absolute;
-  top: 340px;
   right: 0px;
   /*transition: all .5s;*/
 }
@@ -254,7 +252,6 @@
   background-color: rgba(140, 140, 140, 0.6);
   position: absolute;
   right: 0px;
-  top: 380px;
   /*transition: all .5s;*/
 }
 #four-form {
@@ -296,7 +293,6 @@
   background-color: rgba(140, 140, 140, 0.6);
   position: absolute;
   right: 0px;
-  top: 420px;
   /*transition: all .5s;*/
 }
 #five-form {
@@ -338,7 +334,6 @@
   background-color: rgba(140, 140, 140, 0.6);
   position: absolute;
   right: 0px;
-  top: 460px;
   /*transition: all .5s;*/
 }
 #six-form {

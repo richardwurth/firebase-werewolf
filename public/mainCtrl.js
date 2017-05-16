@@ -7,6 +7,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   var secondRef = firebase.database().ref();
   var oneChatRef = firebase.database().ref().child('role_one_chat');
   var twoChatRef = firebase.database().ref().child('role_two_chat');
+  var threeChatRef = firebase.database().ref().child('role_three_chat');
+  var fourChatRef = firebase.database().ref().child('role_four_chat');
+  var fiveChatRef = firebase.database().ref().child('role_five_chat');
+  var sixChatRef = firebase.database().ref().child('role_six_chat');
+
 
 
   var firebaseObj = $firebaseObject(secondRef);
@@ -15,7 +20,12 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   var firebaseWerewolfChats = $firebaseArray(werewolfChatRef);
   var firebaseRoleOneChat = $firebaseArray(oneChatRef);
   var firebaseRoleTwoChat = $firebaseArray(twoChatRef);
+  var firebaseRoleThreeChat = $firebaseArray(threeChatRef);
+  var firebaseRoleFourChat = $firebaseArray(fourChatRef);
+  var firebaseRoleFiveChat = $firebaseArray(fiveChatRef);
+  var firebaseRoleSixChat = $firebaseArray(sixChatRef);
   var firebaseAnnouncements = $firebaseArray(announcementsRef);
+
 
   firebaseArr.profiles = firebaseArr;
 
@@ -43,39 +53,41 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   $scope.timeChangeButton = false;
 
   $scope.roleOne = false;
-  let roleOneNewMessage = false;
+  firebaseObj.roleOneNewMessage = false;
 
   $scope.roleTwo = false;
-  let roleTwoNewMessage = false;
+  firebaseObj.roleTwoNewMessage = false;
 
   $scope.roleThree = false;
-  let roleThreeNewMessage = false;
+  firebaseObj.roleThreeNewMessage = false;
 
   $scope.roleFour = false;
-  let roleFourNewMessage = false;
+  firebaseObj.roleFourNewMessage = false;
 
   $scope.roleFive = false;
-  let roleFiveNewMessage = false;
+  firebaseObj.roleFiveNewMessage = false;
 
   $scope.roleSix = false;
-  let roleSixNewMessage = false;
+  firebaseObj.roleSixNewMessage = false;
 
-
+  firebaseObj.villageNewMessage = false;
 
   $scope.getRole = function(){
-    let declaration = prompt("What is the role that you have been given?").toUpperCase();
-    if (declaration == "WEREWOLF"){
-      let verify = prompt("Please enter the password provided to you by the Game Master.").toUpperCase();
-      if (verify == werewolfPassword) {
-        $scope.isWerewolf = true;
-        console.log($scope.isWerewolf);
-      } else {
-        alert("Nice try.");
-      }
+    let declaration = prompt("Please enter the password for your role.");
+    if (declaration == firebaseObj.roleOnePassword){
+      $scope.roleOne = true;
+    } else if (declaration == firebaseObj.roleTwoPassword){
+      $scope.roleTwo = true;
+    } else if (declaration == firebaseObj.roleThreePassword){
+      $scope.roleThree = true;
+    } else if (declaration == firebaseObj.roleFourPassword){
+      $scope.roleFour = true;
+    } else if (declaration == firebaseObj.roleFivePassword){
+      $scope.roleFive = true;
+    } else if (declaration == firebaseObj.roleSixPassword){
+      $scope.roleSix = true;
     } else {
-      console.log("This is incorrect");
-      console.log(declaration);
-      console.log($scope.isWerewolf);
+      alert("That password does not match any roles.");
     }
   };
 
@@ -100,6 +112,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
         username : username,
         message : input
       };
+      firebaseObj.villageNewMessage = true;
+      firebaseObj.$save();
       $scope.chatLog.$add(temp);
       console.log($scope.chatLog);
       document.getElementById("userInput").value = "";
@@ -119,6 +133,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       username : username,
       message : input
     };
+    firebaseObj.roleOneNewMessage = true;
+    firebaseObj.$save();
     $scope.onechatLog.$add(temp);
     document.getElementById("oneUserInput").value = "";
   };
@@ -128,6 +144,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       username : username,
       message : input
     };
+    firebaseObj.roleTwoNewMessage = true;
+    firebaseObj.$save();
     $scope.twochatLog.$add(temp);
     document.getElementById("twoUserInput").value = "";
   };
@@ -137,6 +155,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       username : username,
       message : input
     };
+    firebaseObj.roleThreeNewMessage = true;
+    firebaseObj.$save();
     $scope.threechatLog.$add(temp);
     document.getElementById("threeUserInput").value = "";
   };
@@ -146,6 +166,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       username : username,
       message : input
     };
+    firebaseObj.roleFourNewMessage = true;
+    firebaseObj.$save();
     $scope.fourchatLog.$add(temp);
     document.getElementById("fourUserInput").value = "";
   };
@@ -155,6 +177,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       username : username,
       message : input
     };
+    firebaseObj.roleFiveNewMessage = true;
+    firebaseObj.$save();
     $scope.fivechatLog.$add(temp);
     document.getElementById("fiveUserInput").value = "";
   };
@@ -164,6 +188,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       username : username,
       message : input
     };
+    firebaseObj.roleSixNewMessage = true;
+    firebaseObj.$save();
     $scope.sixchatLog.$add(temp);
     document.getElementById("sixUserInput").value = "";
   };
@@ -183,6 +209,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#chatBump').css('left','235px');
       $('#arrow-direction').css('transform','rotate(' + 180 + 'deg)');
       showingChat = true;
+      firebaseObj.villageNewMessage = false;
+      firebaseObj.$save();
     } else {
       $('#chatBump').css('left','0px');
       $('#arrow-direction').css('transform','rotate(' + 0 + 'deg)');
@@ -216,6 +244,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#one-form').show();
       $('#one-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleOneChat = true;
+      firebaseObj.roleOneNewMessage = false;
+      firebaseObj.$save();
     } else {
       $('#one-chatBump').css('right','0px');
       $('#one-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
@@ -232,6 +262,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#two-chatWindow').css('width','230px');
       $('#two-form').show();
       showingRoleTwoChat = true;
+      firebaseObj.roleTwoNewMessage = false;
+      firebaseObj.$save();
     } else {
       $('#two-chatBump').css('right','0px');
       $('#two-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
@@ -248,6 +280,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#three-chatWindow').css('width','230px');
       $('#three-form').show();
       showingRoleThreeChat = true;
+      firebaseObj.roleThreeNewMessage = false;
+      firebaseObj.$save();
     } else {
       $('#three-chatBump').css('right','0px');
       $('#three-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
@@ -264,6 +298,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#four-chatWindow').css('width','230px');
       $('#four-form').show();
       showingRoleFourChat = true;
+      firebaseObj.roleFourNewMessage = false;
+      firebaseObj.$save();
     } else {
       $('#four-chatBump').css('right','0px');
       $('#four-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
@@ -280,6 +316,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#five-chatWindow').css('width','230px');
       $('#five-form').show();
       showingRoleFiveChat = true;
+      firebaseObj.roleFiveNewMessage = false;
+      firebaseObj.$save();
     } else {
       $('#five-chatBump').css('right','0px');
       $('#five-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
@@ -296,6 +334,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#six-chatWindow').css('width','230px');
       $('#six-form').show();
       showingRoleSixChat = true;
+      firebaseObj.roleSixNewMessage = false;
+      firebaseObj.$save();
     } else {
       $('#six-chatBump').css('right','0px');
       $('#six-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
@@ -333,35 +373,52 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   $scope.addProfile = function() {
     let fullNameOne = prompt('What is the Full Name of the player to add?');
     let role = prompt('What is the role of this player?');
+    let password = prompt("Please create a password for access to the chat for this role");
     if (role === "villager" || role === "VILLAGER" || role === "Villager") {
       alert("OK it's a common folk!");
     } else if ($scope.roleOneName === "") {
         $scope.roleOne = true;
         $scope.roleOneName = role;
+        firebaseObj.roleOnePassword = password;
+        firebaseObj.$save();
       } else if ($scope.roleOneName !== "") {
         if ($scope.roleTwoName === "") {
           $scope.roleTwo = true;
           $scope.roleTwoName = role;
+          firebaseObj.roleTwoPassword = password;
+          firebaseObj.$save();
         } else if ($scope.roleTwoName !== "") {
           if ($scope.roleThreeName === "") {
             $scope.roleThree = true;
             $scope.roleThreeName = role;
+            firebaseObj.roleThreePassword = password;
+            firebaseObj.$save();
           } else if ($scope.roleThreeName !== "") {
             if ($scope.roleFourName === "") {
               $scope.roleFour = true;
               $scope.roleFourName = role;
+              firebaseObj.roleFourPassword = password;
+              firebaseObj.$save();
             } else if ($scope.roleFiveName !== "") {
               if ($scope.roleFiveName === "") {
-                $scope.roleSix = true;
-                $scope.roleSixName = role;
+                $scope.roleFive = true;
+                $scope.roleFiveName = role;
+                firebaseObj.roleFivePassword = password;
+                firebaseObj.$save();
               } else if ($scope.roleSixName !== "") {
-                  alert("No more room for additional roles!");
+                if($scope.roleSixName === "") {
+                  $scope.roleSix = true;
+                  $scope.roleSixName = role;
+                  firebaseObj.roleSixPassword = password;
+                  firebaseObj.$save();
+                }
+              } else {
+                alert("No more room for additional roles!");
               }
             }
           }
         }
       }
-
     let splitNameOne = fullNameOne.split(" ");
     let lastOne = splitNameOne[1].charAt(0).toUpperCase()+".";
     let firstOne = splitNameOne[0].charAt(0).toUpperCase()+".";
@@ -378,6 +435,8 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     firebaseArr[0] = profiles;
     $scope.profileTracker = profiles;
     firebaseArr.$add(profiles);
+    let forYou = "Suck it!";
+    firebaseRoleOneChat.$add(forYou);
   };
 
   let masterPassword = "";
@@ -427,13 +486,50 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#form').hide();
       $scope.timeOfDay = "Day";
     }
+    if (firebaseObj.villageNewMessage === true && showingChat === false) {
+      $('#chatBump').css('background-color','white');
+    } else {
+      $('#chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+    if (firebaseObj.roleOneNewMessage === true && showingRoleOneChat === false) {
+      $('#one-chatBump').css('background-color','white');
+    } else {
+      $('#one-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+    if (firebaseObj.roleTwoNewMessage === true && showingRoleTwoChat === false) {
+      $('#two-chatBump').css('background-color','white');
+    } else {
+      $('#two-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+    if (firebaseObj.roleThreeNewMessage === true && showingRoleThreeChat === false) {
+      $('#three-chatBump').css('background-color','white');
+    } else {
+      $('#three-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+    if (firebaseObj.roleFourNewMessage === true && showingRoleFourChat === false) {
+      $('#four-chatBump').css('background-color','white');
+    } else {
+      $('#four-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+    if (firebaseObj.roleFiveNewMessage === true && showingRoleFiveChat === false) {
+      $('#five-chatBump').css('background-color','white');
+    } else {
+      $('#five-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+    if (firebaseObj.roleSixNewMessage === true && showingRoleSixChat === false) {
+      $('#six-chatBump').css('background-color','white');
+    } else {
+      $('#six-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
     // $scope.chatLog = firebaseObj.thing;
 
   });
   let wasClicked = false;
   $scope.newMessageTest = function(){
-    roleOneNewMessage = true;
-    $('#one-chatBump').css('background-color','white');
+    firebaseObj.testOne = roleOneNewMessage;
+    firebaseObj.$save();
+    // roleOneNewMessage = true;
+    // $('#one-chatBump').css('background-color','white');
   };
 
 var arrWatch = firebaseArr.$watch(function(){
@@ -456,5 +552,4 @@ var arrWatch = firebaseArr.$watch(function(){
     firebaseObj.daytime = !firebaseObj.daytime;
     firebaseObj.$save();
   };
-
 });
