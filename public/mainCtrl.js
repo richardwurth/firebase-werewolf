@@ -42,6 +42,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   $scope.werewolfchatLog = $firebaseArray(werewolfChatRef);
   $scope.onechatLog = $firebaseArray(oneChatRef);
   $scope.twochatLog = $firebaseArray(twoChatRef);
+  $scope.threechatLog = $firebaseArray(threeChatRef);
+  $scope.fourchatLog = $firebaseArray(fourChatRef);
+  $scope.fivechatLog = $firebaseArray(fiveChatRef);
+  $scope.sixchatLog = $firebaseArray(sixChatRef);
+
   $scope.announcementsLogs = $firebaseArray(announcementsRef);
 
   let werewolfPassword = "TEST";
@@ -92,10 +97,12 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   };
 
   let adminPassword = "TEST123";
+  let isAdmin = false;
 
   $scope.generalTest = function(){
       let verify = prompt("Please enter the Admin Password").toUpperCase();
       if (verify == adminPassword) {
+        isAdmin = true;
         $scope.isWerewolf = true;
         $scope.publicNotice = true;
         $scope.showKillButton = true;
@@ -419,6 +426,7 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
           }
         }
       }
+
     let splitNameOne = fullNameOne.split(" ");
     let lastOne = splitNameOne[1].charAt(0).toUpperCase()+".";
     let firstOne = splitNameOne[0].charAt(0).toUpperCase()+".";
@@ -435,8 +443,6 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     firebaseArr[0] = profiles;
     $scope.profileTracker = profiles;
     firebaseArr.$add(profiles);
-    let forYou = "Suck it!";
-    firebaseRoleOneChat.$add(forYou);
   };
 
   let masterPassword = "";
@@ -477,14 +483,32 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   var unwatch = firebaseObj.$watch(function(){
     if (firebaseObj.daytime === false) {
       $('body').css('background-image','url("https://dl.dropbox.com/s/12i9f4kxm9uz71c/day_layered.jpg")');
-      $('#form').show();
-      $('#werewolf-chatBump').hide();
       $scope.timeOfDay = "Night";
+      if (isAdmin === false){
+        $('#form').show();
+        $('#werewolf-chatBump').hide();
+        $('#one-form').hide();
+        $('#two-form').hide();
+        $('#three-form').hide();
+        $('#four-form').hide();
+        $('#five-form').hide();
+        $('#six-form').hide();
+      }
     } else if (firebaseObj.daytime === true) {
       $('body').css('background-image','url("https://dl.dropbox.com/s/5hqbjkhskrz6c47/night_layered.jpg")');
-      $('#werewolf-chatBump').show();
-      $('#form').hide();
       $scope.timeOfDay = "Day";
+      if (isAdmin === false && $scope.roleOne === true){
+        $('#one-form').show();
+      } else if (isAdmin === false && $scope.roleTwo === true){
+        $('#two-form').show();
+      } else if (isAdmin === false && $scope.roleThree === true){
+        $('#three-form').show();
+      } else if (isAdmin === false && $scope.roleFour === true){
+        $('#four-form').show();
+      } else if (isAdmin === false && $scope.roleFive === true){
+        $('#five-form').show();
+      } else if (isAdmin === false && $scope.roleSix === true){
+        $('#six-form').show();
     }
     if (firebaseObj.villageNewMessage === true && showingChat === false) {
       $('#chatBump').css('background-color','white');
@@ -521,6 +545,7 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     } else {
       $('#six-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
     }
+  }
     // $scope.chatLog = firebaseObj.thing;
 
   });
