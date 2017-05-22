@@ -20,6 +20,7 @@
   <div id="main-parent">
     <div id="cover">
       <button ng-if="addPlayerButton" id="add-player" ng-click="addProfile(0)" name="button">Add Player</button>
+      <button ng-if="showAllChats" ng-click="showChats()">Show All Chats</button>
       <div id="profiles">
         <div id="profileRepeater" submit-required="true" ng-repeat="profile in profileTracker track by $index">
           <ng-include src=" 'profile.html' "></ng-include>
@@ -30,11 +31,11 @@
       <ng-include src=" 'village.html' "></ng-include>
     </div>
     <div id="rightMenu">
-      <div style="height: 50px; width: 50px">
+      <!-- <div style="height: 50px; width: 50px">
       <div ng-if="isWerewolf" id="werewolf-chatBump">
         <ng-include src=" 'werewolf.html' "></ng-include>
       </div>
-    </div>
+    </div> -->
 
       <div style="height: 50px; width: 50px">
       <div ng-if="roleOne" id="one-chatBump">

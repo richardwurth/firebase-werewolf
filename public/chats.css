@@ -67,7 +67,7 @@
   background-color: rgba(140, 140, 140, 0.6);
 }
 /*-------------------- WEREWOLF CHAT --------------------*/
-#werewolf-arrow-direction {
+/*#werewolf-arrow-direction {
   transform: rotate(180deg);
   transition: all .5s;
 }
@@ -106,7 +106,7 @@
   overflow: auto;
   z-index: 20;
   background-color: rgba(140, 140, 140, 0.6);
-}
+}*/
 /*-------------------- ROLE ONE CHAT --------------------*/
 #one-arrow-direction {
   transform: rotate(180deg);
