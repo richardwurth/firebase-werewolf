@@ -353,3 +353,249 @@
   z-index: 20;
   background-color: rgba(140, 140, 140, 0.6);
 }
+/*-------------------- ROLE SEVEN CHAT --------------------*/
+#seven-arrow-direction {
+  transform: rotate(180deg);
+  transition: all .5s;
+}
+#seven-chatWindow {
+  height: 400px;
+  width: 0px;
+  position: absolute;
+  top: -200px;
+  right: -230px;
+  z-index: 10;
+  overflow: auto;
+  background-color: rgba(140, 140, 140, 0.9);
+  /*transition: all .5s;*/
+}
+#seven-chatBump {
+  height: 50px;
+  width: 30px;
+  background-color: rgba(140, 140, 140, 0.6);
+  position: absolute;
+  right: 0px;
+  /*transition: all .5s;*/
+}
+#seven-form {
+  z-index: 10;
+  width: 230px;
+  position: absolute;
+  bottom: -173px;
+  right: -230px;
+  display: none;
+}
+#seven-chat-view {
+  height: 200px;
+  width: 0px;
+  font-family: monospace;
+  text-overflow: clip;
+  overflow: auto;
+  z-index: 20;
+  background-color: rgba(140, 140, 140, 0.6);
+}
+/*-------------------- ROLE EIGHT CHAT --------------------*/
+#eight-arrow-direction {
+  transform: rotate(180deg);
+  transition: all .5s;
+}
+#eight-chatWindow {
+  height: 400px;
+  width: 0px;
+  position: absolute;
+  top: -200px;
+  right: -230px;
+  z-index: 10;
+  overflow: auto;
+  background-color: rgba(140, 140, 140, 0.9);
+  /*transition: all .5s;*/
+}
+#eight-chatBump {
+  height: 50px;
+  width: 30px;
+  background-color: rgba(140, 140, 140, 0.6);
+  position: absolute;
+  right: 0px;
+  /*transition: all .5s;*/
+}
+#eight-form {
+  z-index: 10;
+  width: 230px;
+  position: absolute;
+  bottom: -173px;
+  right: -230px;
+  display: none;
+}
+#eight-chat-view {
+  height: 200px;
+  width: 0px;
+  font-family: monospace;
+  text-overflow: clip;
+  overflow: auto;
+  z-index: 20;
+  background-color: rgba(140, 140, 140, 0.6);
+}
+/*-------------------- ROLE NINE CHAT --------------------*/
+#nine-arrow-direction {
+  transform: rotate(180deg);
+  transition: all .5s;
+}
+#nine-chatWindow {
+  height: 400px;
+  width: 0px;
+  position: absolute;
+  top: -200px;
+  right: -230px;
+  z-index: 10;
+  overflow: auto;
+  background-color: rgba(140, 140, 140, 0.9);
+  /*transition: all .5s;*/
+}
+#nine-chatBump {
+  height: 50px;
+  width: 30px;
+  background-color: rgba(140, 140, 140, 0.6);
+  position: absolute;
+  right: 0px;
+  /*transition: all .5s;*/
+}
+#nine-form {
+  z-index: 10;
+  width: 230px;
+  position: absolute;
+  bottom: -173px;
+  right: -230px;
+  display: none;
+}
+#nine-chat-view {
+  height: 200px;
+  width: 0px;
+  font-family: monospace;
+  text-overflow: clip;
+  overflow: auto;
+  z-index: 20;
+  background-color: rgba(140, 140, 140, 0.6);
+}
+/*-------------------- ROLE TEN CHAT --------------------*/
+#ten-arrow-direction {
+  transform: rotate(180deg);
+  transition: all .5s;
+}
+#ten-chatWindow {
+  height: 400px;
+  width: 0px;
+  position: absolute;
+  top: -200px;
+  right: -230px;
+  z-index: 10;
+  overflow: auto;
+  background-color: rgba(140, 140, 140, 0.9);
+  /*transition: all .5s;*/
+}
+#ten-chatBump {
+  height: 50px;
+  width: 30px;
+  background-color: rgba(140, 140, 140, 0.6);
+  position: absolute;
+  right: 0px;
+  /*transition: all .5s;*/
+}
+#ten-form {
+  z-index: 10;
+  width: 230px;
+  position: absolute;
+  bottom: -173px;
+  right: -230px;
+  display: none;
+}
+#ten-chat-view {
+  height: 200px;
+  width: 0px;
+  font-family: monospace;
+  text-overflow: clip;
+  overflow: auto;
+  z-index: 20;
+  background-color: rgba(140, 140, 140, 0.6);
+}
+/*-------------------- ROLE ELEVEN CHAT --------------------*/
+#eleven-arrow-direction {
+  transform: rotate(180deg);
+  transition: all .5s;
+}
+#eleven-chatWindow {
+  height: 400px;
+  width: 0px;
+  position: absolute;
+  top: -200px;
+  right: -230px;
+  z-index: 10;
+  overflow: auto;
+  background-color: rgba(140, 140, 140, 0.9);
+  /*transition: all .5s;*/
+}
+#eleven-chatBump {
+  height: 50px;
+  width: 30px;
+  background-color: rgba(140, 140, 140, 0.6);
+  position: absolute;
+  right: 0px;
+  /*transition: all .5s;*/
+}
+#eleven-form {
+  z-index: 10;
+  width: 230px;
+  position: absolute;
+  bottom: -173px;
+  right: -230px;
+  display: none;
+}
+#eleven-chat-view {
+  height: 200px;
+  width: 0px;
+  font-family: monospace;
+  text-overflow: clip;
+  overflow: auto;
+  z-index: 20;
+  background-color: rgba(140, 140, 140, 0.6);
+}
+/*-------------------- ROLE TWELVE CHAT --------------------*/
+#twelve-arrow-direction {
+  transform: rotate(180deg);
+  transition: all .5s;
+}
+#twelve-chatWindow {
+  height: 400px;
+  width: 0px;
+  position: absolute;
+  top: -200px;
+  right: -230px;
+  z-index: 10;
+  overflow: auto;
+  background-color: rgba(140, 140, 140, 0.9);
+  /*transition: all .5s;*/
+}
+#twelve-chatBump {
+  height: 50px;
+  width: 30px;
+  background-color: rgba(140, 140, 140, 0.6);
+  position: absolute;
+  right: 0px;
+  /*transition: all .5s;*/
+}
+#twelve-form {
+  z-index: 10;
+  width: 230px;
+  position: absolute;
+  bottom: -173px;
+  right: -230px;
+  display: none;
+}
+#twelve-chat-view {
+  height: 200px;
+  width: 0px;
+  font-family: monospace;
+  text-overflow: clip;
+  overflow: auto;
+  z-index: 20;
+  background-color: rgba(140, 140, 140, 0.6);
+}

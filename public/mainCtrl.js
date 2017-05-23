@@ -11,6 +11,13 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   var fourChatRef = firebase.database().ref().child('role_four_chat');
   var fiveChatRef = firebase.database().ref().child('role_five_chat');
   var sixChatRef = firebase.database().ref().child('role_six_chat');
+  var sevenChatRef = firebase.database().ref().child('role_seven_chat');
+  var eightChatRef = firebase.database().ref().child('role_eight_chat');
+  var nineChatRef = firebase.database().ref().child('role_nine_chat');
+  var tenChatRef = firebase.database().ref().child('role_ten_chat');
+  var elevenChatRef = firebase.database().ref().child('role_eleven_chat');
+  var twelveChatRef = firebase.database().ref().child('role_twelve_chat');
+
 
 
 
@@ -24,6 +31,13 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   var firebaseRoleFourChat = $firebaseArray(fourChatRef);
   var firebaseRoleFiveChat = $firebaseArray(fiveChatRef);
   var firebaseRoleSixChat = $firebaseArray(sixChatRef);
+  var firebaseRoleSevenChat = $firebaseArray(sevenChatRef);
+  var firebaseRoleEightChat = $firebaseArray(eightChatRef);
+  var firebaseRoleNineChat = $firebaseArray(nineChatRef);
+  var firebaseRoleTenChat = $firebaseArray(tenChatRef);
+  var firebaseRoleElevenChat = $firebaseArray(elevenChatRef);
+  var firebaseRoleTwelveChat = $firebaseArray(twelveChatRef);
+
   var firebaseAnnouncements = $firebaseArray(announcementsRef);
 
 
@@ -46,6 +60,13 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   $scope.fourchatLog = $firebaseArray(fourChatRef);
   $scope.fivechatLog = $firebaseArray(fiveChatRef);
   $scope.sixchatLog = $firebaseArray(sixChatRef);
+  $scope.sevenchatLog = $firebaseArray(sevenChatRef);
+  $scope.eightchatLog = $firebaseArray(eightChatRef);
+  $scope.ninechatLog = $firebaseArray(nineChatRef);
+  $scope.tenchatLog = $firebaseArray(tenChatRef);
+  $scope.elevenchatLog = $firebaseArray(elevenChatRef);
+  $scope.twelvechatLog = $firebaseArray(twelveChatRef);
+
 
   $scope.announcementsLogs = $firebaseArray(announcementsRef);
 
@@ -81,28 +102,58 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   firebaseObj.roleSixNewMessage = false;
   firebaseObj.roleSixName = "";
 
+  $scope.roleSeven = false;
+  firebaseObj.roleSevenNewMessage = false;
+  firebaseObj.roleSevenName = "";
+
+  $scope.roleEight = false;
+  firebaseObj.roleEightNewMessage = false;
+  firebaseObj.roleEightName = "";
+
+  $scope.roleNine = false;
+  firebaseObj.roleNineNewMessage = false;
+  firebaseObj.roleNineName = "";
+
+  $scope.roleTen = false;
+  firebaseObj.roleTenNewMessage = false;
+  firebaseObj.roleTenName = "";
+
+  $scope.roleEleven = false;
+  firebaseObj.roleElevenNewMessage = false;
+  firebaseObj.roleElevenName = "";
+
+  $scope.roleTwelve = false;
+  firebaseObj.roleTwelveNewMessage = false;
+  firebaseObj.roleTwelveName = "";
+
   firebaseObj.villageNewMessage = false;
 
   $scope.getRole = function(){
     let declaration = prompt("Please enter the password for your role.");
     if (declaration == firebaseObj.roleOnePassword){
       $scope.roleOne = true;
-      // $scope.roleOneName = firebaseObj.roleOneName;
     } else if (declaration == firebaseObj.roleTwoPassword){
       $scope.roleTwo = true;
-      // $scope.roleTwoName = firebaseObj.roleTwoName;
     } else if (declaration == firebaseObj.roleThreePassword){
       $scope.roleThree = true;
-      // $scope.roleThreeName = firebaseObj.roleThreeName;
     } else if (declaration == firebaseObj.roleFourPassword){
       $scope.roleFour = true;
-      // $scope.roleFourName = firebaseObj.roleFourName;
     } else if (declaration == firebaseObj.roleFivePassword){
       $scope.roleFive = true;
-      // $scope.roleFiveName = firebaseObj.roleFiveName;
     } else if (declaration == firebaseObj.roleSixPassword){
       $scope.roleSix = true;
-      // $scope.roleSixName = firebaseObj.roleSixName;
+    } else if (declaration == firebaseObj.roleSevenPassword){
+      $scope.roleSeven = true;
+    } else if (declaration == firebaseObj.roleEightPassword){
+      $scope.roleEight = true;
+    } else if (declaration == firebaseObj.roleNinePassword){
+      $scope.roleNine = true;
+    } else if (declaration == firebaseObj.roleTenPassword){
+      $scope.roleTen = true;
+    } else if (declaration == firebaseObj.roleElevenPassword){
+      $scope.roleEleven = true;
+    } else if (declaration == firebaseObj.roleTwelvePassword){
+      $scope.roleTwelve = true;
     } else {
       alert("That password does not match any roles.");
     }
@@ -118,6 +169,13 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     $scope.roleFour = true;
     $scope.roleFive = true;
     $scope.roleSix = true;
+    $scope.roleSeven = true;
+    $scope.roleEight = true;
+    $scope.roleNine = true;
+    $scope.roleTen = true;
+    $scope.roleEleven = true;
+    $scope.roleTwelve = true;
+
     if(!firebaseObj.roleOneName){
       $scope.roleOneName = "";
     } else {
@@ -145,10 +203,38 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     }
     if(!firebaseObj.roleSixName){
       $scope.roleSixName = "";
-      console.log("Not there!");
     } else {
       $scope.roleSixName = firebaseObj.roleSixName;
-      console.log("It's reading it correctly");
+    }
+    if(!firebaseObj.roleSevenName){
+      $scope.roleSevenName = "";
+    } else {
+      $scope.roleSevenName = firebaseObj.roleSevenName;
+    }
+    if(!firebaseObj.roleEightName){
+      $scope.roleEightName = "";
+    } else {
+      $scope.roleEightName = firebaseObj.roleEightName;
+    }
+    if(!firebaseObj.roleNineName){
+      $scope.roleNineName = "";
+    } else {
+      $scope.roleNineName = firebaseObj.roleNineName;
+    }
+    if(!firebaseObj.roleTenName){
+      $scope.roleTenName = "";
+    } else {
+      $scope.roleTenName = firebaseObj.roleTenName;
+    }
+    if(!firebaseObj.roleElevenName){
+      $scope.roleElevenName = "";
+    } else {
+      $scope.roleElevenName = firebaseObj.roleElevenName;
+    }
+    if(!firebaseObj.roleTwelveName){
+      $scope.roleTwelveName = "";
+    } else {
+      $scope.roleTwelveName = firebaseObj.roleTwelveName;
     }
     // $scope.roleOneName = firebaseObj.roleOneName;
     // $scope.roleTwoName = firebaseObj.roleTwoName;
@@ -165,7 +251,6 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $scope.showAllChats = true;
       // $scope.isWerewolf = true;
       $scope.publicNotice = true;
-      $scope.showKillButton = true;
       $scope.addPlayerButton = true;
       $scope.timeChangeButton = true;
       $scope.showChats();
@@ -187,15 +272,6 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     console.log($scope.chatLog);
     document.getElementById("userInput").value = "";
   };
-  // $scope.werewolfSend = function(){
-  //   var input = document.getElementById("werewolfUserInput").value;
-  //   var temp = {
-  //     username : username,
-  //     message : input
-  //   };
-  //   $scope.werewolfchatLog.$add(temp);
-  //   document.getElementById("werewolfUserInput").value = "";
-  // };
   $scope.oneSend = function(){
     var input = document.getElementById("oneUserInput").value;
     var temp = {
@@ -262,6 +338,72 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     $scope.sixchatLog.$add(temp);
     document.getElementById("sixUserInput").value = "";
   };
+  $scope.sevenSend = function(){
+    var input = document.getElementById("sevenUserInput").value;
+    var temp = {
+      username : username,
+      message : input
+    };
+    firebaseObj.roleSevenNewMessage = true;
+    firebaseObj.$save();
+    $scope.sevenchatLog.$add(temp);
+    document.getElementById("sevenUserInput").value = "";
+  };
+  $scope.eightSend = function(){
+    var input = document.getElementById("eightUserInput").value;
+    var temp = {
+      username : username,
+      message : input
+    };
+    firebaseObj.roleEightNewMessage = true;
+    firebaseObj.$save();
+    $scope.eightchatLog.$add(temp);
+    document.getElementById("eightUserInput").value = "";
+  };
+  $scope.nineSend = function(){
+    var input = document.getElementById("nineUserInput").value;
+    var temp = {
+      username : username,
+      message : input
+    };
+    firebaseObj.roleNineNewMessage = true;
+    firebaseObj.$save();
+    $scope.ninechatLog.$add(temp);
+    document.getElementById("nineUserInput").value = "";
+  };
+  $scope.tenSend = function(){
+    var input = document.getElementById("tenUserInput").value;
+    var temp = {
+      username : username,
+      message : input
+    };
+    firebaseObj.roleTenNewMessage = true;
+    firebaseObj.$save();
+    $scope.tenchatLog.$add(temp);
+    document.getElementById("tenUserInput").value = "";
+  };
+  $scope.elevenSend = function(){
+    var input = document.getElementById("elevenUserInput").value;
+    var temp = {
+      username : username,
+      message : input
+    };
+    firebaseObj.roleElevenNewMessage = true;
+    firebaseObj.$save();
+    $scope.elevenchatLog.$add(temp);
+    document.getElementById("elevenUserInput").value = "";
+  };
+  $scope.twelveSend = function(){
+    var input = document.getElementById("twelveUserInput").value;
+    var temp = {
+      username : username,
+      message : input
+    };
+    firebaseObj.roleTwelveNewMessage = true;
+    firebaseObj.$save();
+    $scope.twelvechatLog.$add(temp);
+    document.getElementById("twelveUserInput").value = "";
+  };
 
   $scope.announcementsSend = function(){
     var input = document.getElementById("announcementsInput").value;
@@ -285,23 +427,6 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       showingChat = false;
     }
   };
-
-  // let showingWerewolfChat = false;
-  // $scope.showWerewolfChat = function() {
-  //   if (showingWerewolfChat === false){
-  //     $('#werewolf-chatBump').css('right','235px');
-  //     $('#werewolf-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
-  //     $('#werewolf-chatWindow').css('width','230px');
-  //     $('#werewolf-form').show();
-  //     showingWerewolfChat = true;
-  //   } else {
-  //     $('#werewolf-chatBump').css('right','0px');
-  //     $('#werewolf-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
-  //     $('#werewolf-chatWindow').css('width','0px');
-  //     $('#werewolf-form').hide();
-  //     showingWerewolfChat = false;
-  //   }
-  // };
 
   let showingRoleOneChat = false;
   $scope.showRoleOneChat = function() {
@@ -407,6 +532,109 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       showingRoleSixChat = false;
     }
   };
+  let showingRoleSevenChat = false;
+  $scope.showRoleSevenChat = function() {
+    if (showingRoleSevenChat === false){
+      $('#seven-chatBump').css('right','235px');
+      $('#seven-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
+      $('#seven-chatWindow').css('width','230px');
+      $('#seven-form').show();
+      $('#seven-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+      showingRoleSevenChat = true;
+    } else {
+      $('#seven-chatBump').css('right','0px');
+      $('#seven-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
+      $('#seven-chatWindow').css('width','0px');
+      $('#seven-form').hide();
+      showingRoleSevenChat = false;
+    }
+  };
+  let showingRoleEightChat = false;
+  $scope.showRoleEightChat = function() {
+    if (showingRoleEightChat === false){
+      $('#eight-chatBump').css('right','235px');
+      $('#eight-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
+      $('#eight-chatWindow').css('width','230px');
+      $('#eight-form').show();
+      $('#eight-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+      showingRoleEightChat = true;
+    } else {
+      $('#eight-chatBump').css('right','0px');
+      $('#eight-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
+      $('#eight-chatWindow').css('width','0px');
+      $('#eight-form').hide();
+      showingRoleEightChat = false;
+    }
+  };
+  let showingRoleNineChat = false;
+  $scope.showRoleNineChat = function() {
+    if (showingRoleNineChat === false){
+      $('#nine-chatBump').css('right','235px');
+      $('#nine-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
+      $('#nine-chatWindow').css('width','230px');
+      $('#nine-form').show();
+      $('#nine-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+      showingRoleNineChat = true;
+    } else {
+      $('#nine-chatBump').css('right','0px');
+      $('#nine-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
+      $('#nine-chatWindow').css('width','0px');
+      $('#nine-form').hide();
+      showingRoleNineChat = false;
+    }
+  };
+  let showingRoleTenChat = false;
+  $scope.showRoleTenChat = function() {
+    if (showingRoleTenChat === false){
+      $('#ten-chatBump').css('right','235px');
+      $('#ten-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
+      $('#ten-chatWindow').css('width','230px');
+      $('#ten-form').show();
+      $('#ten-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+      showingRoleTenChat = true;
+    } else {
+      $('#ten-chatBump').css('right','0px');
+      $('#ten-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
+      $('#ten-chatWindow').css('width','0px');
+      $('#ten-form').hide();
+      showingRoleTenChat = false;
+    }
+  };
+  let showingRoleElevenChat = false;
+  $scope.showRoleElevenChat = function() {
+    if (showingRoleElevenChat === false){
+      $('#eleven-chatBump').css('right','235px');
+      $('#eleven-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
+      $('#eleven-chatWindow').css('width','230px');
+      $('#eleven-form').show();
+      $('#eleven-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+      showingRoleElevenChat = true;
+    } else {
+      $('#eleven-chatBump').css('right','0px');
+      $('#eleven-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
+      $('#eleven-chatWindow').css('width','0px');
+      $('#eleven-form').hide();
+      showingRoleElevenChat = false;
+    }
+  };
+  let showingRoleSixChat = false;
+  $scope.showRoleTwelveChat = function() {
+    if (showingRoleTwelveChat === false){
+      $('#twelve-chatBump').css('right','235px');
+      $('#twelve-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
+      $('#twelve-chatWindow').css('width','230px');
+      $('#twelve-form').show();
+      $('#twelve-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+      showingRoleTwelveChat = true;
+    } else {
+      $('#twelve-chatBump').css('right','0px');
+      $('#twelve-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
+      $('#twelve-chatWindow').css('width','0px');
+      $('#twelve-form').hide();
+      showingRoleTwelveChat = false;
+    }
+  };
+
 
   let monitorCheck = false;
   firebaseObj.timer = monitorCheck;
@@ -437,6 +665,13 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   $scope.roleFourName = "";
   $scope.roleFiveName = "";
   $scope.roleSixName = "";
+  $scope.roleSevenName = "";
+  $scope.roleEightName = "";
+  $scope.roleNineName = "";
+  $scope.roleTenName = "";
+  $scope.roleElevenName = "";
+  $scope.roleTwelveName = "";
+
 
 
 
@@ -449,6 +684,7 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     if (role === "villager" || role === "VILLAGER" || role === "Villager") {
       alert("OK it's a common folk!");
     } else if ($scope.roleOneName === "") {
+      console.log("One");
       $scope.roleOne = true;
       firebaseObj.roleOneName = role;
       $scope.roleOneName = role;
@@ -475,240 +711,282 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
             $scope.roleFourName = role;
             firebaseObj.roleFourPassword = password;
             firebaseObj.$save();
-          } else if ($scope.roleFiveName !== "") {
+          } else if ($scope.roleFourName !== "") {
             if ($scope.roleFiveName === "") {
               $scope.roleFive = true;
               firebaseObj.roleFiveName = role;
               $scope.roleFiveName = role;
               firebaseObj.roleFivePassword = password;
               firebaseObj.$save();
-            } else if ($scope.roleSixName !== "") {
+            } else if ($scope.roleFiveName !== "") {
               if($scope.roleSixName === "") {
                 $scope.roleSix = true;
                 firebaseObj.roleSixName = role;
                 $scope.roleSixName = role;
                 firebaseObj.roleSixPassword = password;
                 firebaseObj.$save();
+              } else if ($scope.roleOneName !== "") {
+                if ($scope.roleTwoName === "") {
+                  $scope.roleTwo = true;
+                  firebaseObj.roleTwoName = role;
+                  $scope.roleTwoName = role;
+                  firebaseObj.roleTwoPassword = password;
+                  firebaseObj.$save();
+                } else if ($scope.roleOneName !== "") {
+                  if ($scope.roleTwoName === "") {
+                    $scope.roleTwo = true;
+                    firebaseObj.roleTwoName = role;
+                    $scope.roleTwoName = role;
+                    firebaseObj.roleTwoPassword = password;
+                    firebaseObj.$save();
+                  } else if ($scope.roleOneName !== "") {
+                    if ($scope.roleTwoName === "") {
+                      $scope.roleTwo = true;
+                      firebaseObj.roleTwoName = role;
+                      $scope.roleTwoName = role;
+                      firebaseObj.roleTwoPassword = password;
+                      firebaseObj.$save();
+                    } else if ($scope.roleOneName !== "") {
+                      if ($scope.roleTwoName === "") {
+                        $scope.roleTwo = true;
+                        firebaseObj.roleTwoName = role;
+                        $scope.roleTwoName = role;
+                        firebaseObj.roleTwoPassword = password;
+                        firebaseObj.$save();
+                      } else if ($scope.roleOneName !== "") {
+                        if ($scope.roleTwoName === "") {
+                          $scope.roleTwo = true;
+                          firebaseObj.roleTwoName = role;
+                          $scope.roleTwoName = role;
+                          firebaseObj.roleTwoPassword = password;
+                          firebaseObj.$save();
+                        } else if ($scope.roleOneName !== "") {
+                          if ($scope.roleTwoName === "") {
+                            $scope.roleTwo = true;
+                            firebaseObj.roleTwoName = role;
+                            $scope.roleTwoName = role;
+                            firebaseObj.roleTwoPassword = password;
+                            firebaseObj.$save();
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
-            } else {
-              alert("No more room for additional roles!");
-            }
-          }
-        }
-      }
-    }
-
-    let splitNameOne = fullNameOne.split(" ");
-    let lastOne = splitNameOne[1].charAt(0).toUpperCase()+".";
-    let firstOne = splitNameOne[0].charAt(0).toUpperCase()+".";
-    let newPerson = {
-      fullNameOne: fullNameOne,
-      firstName: fullNameOne,
-      lastOne: lastOne,
-      firstOne: firstOne,
-      custom: true,
-      showDead: false,
-      role: role
-    };
-    profiles.push(newPerson);
-    firebaseArr[0] = profiles;
-    $scope.profileTracker = profiles;
-    firebaseArr.$add(profiles);
-  };
-
-  let masterPassword = "";
-
-  $scope.addOne = function(index){
-    let fullNameOne = prompt('What is the Full Name of the player to add?');
-    $('#create').hide();
-    $('#delete').hide();
-    $('#kill').show();
-  };
-
-  $scope.deleteOne = function(){
-    let passwordCheck = prompt("Please enter the Master Password");
-    if (passwordCheck === masterPassword) {
-      $('#profile-one').hide();
-    } else {
-      alert("Incorrect password was entered.");
-    }
-  };
-
-  $scope.reviveOne = function(){
-    let passwordCheck = prompt("Please enter the Master Password");
-    if (passwordCheck === masterPassword) {
-      let response = prompt(`You are about to revive this person; type YES to confirm this action.`).toUpperCase();
-      if (response === "YES") {
-        $('#profile-one-content').show();
-        $('#rip-one').css("display","none");
-      } else {
-        alert("You have responded with something other than YES; no changes will take affect.");
-      }
-    } else {
-      alert("Incorrect password was entered.");
-    }
-  };
 
 
-  let testRed = true;
+                let splitNameOne = fullNameOne.split(" ");
+                let lastOne = splitNameOne[1].charAt(0).toUpperCase()+".";
+                let firstOne = splitNameOne[0].charAt(0).toUpperCase()+".";
+                let newPerson = {
+                  fullNameOne: fullNameOne,
+                  firstName: fullNameOne,
+                  lastOne: lastOne,
+                  firstOne: firstOne,
+                  custom: true,
+                  showDead: false,
+                  role: role
+                };
+                profiles.push(newPerson);
+                firebaseArr[0] = profiles;
+                $scope.profileTracker = profiles;
+                firebaseArr.$add(profiles);
+              };
 
-  var unwatch = firebaseObj.$watch(function(){
-    if (firebaseObj.daytime === false) {
-      $('body').css('background-image','url("https://dl.dropbox.com/s/12i9f4kxm9uz71c/day_layered.jpg")');
-      $scope.timeOfDay = "Night";
-      if (isAdmin === false){
-        $('#form').show();
-        // $('#werewolf-chatBump').hide();
-        $('#one-form').hide();
-        $('#two-form').hide();
-        $('#three-form').hide();
-        $('#four-form').hide();
-        $('#five-form').hide();
-        $('#six-form').hide();
-      }
-    } else if (firebaseObj.daytime === true) {
-      $('body').css('background-image','url("https://dl.dropbox.com/s/5hqbjkhskrz6c47/night_layered.jpg")');
-      $scope.timeOfDay = "Day";
-      if (isAdmin === false && $scope.roleOne === true){
-        $('#one-form').show();
-      } else if (isAdmin === false && $scope.roleTwo === true){
-        $('#two-form').show();
-      } else if (isAdmin === false && $scope.roleThree === true){
-        $('#three-form').show();
-      } else if (isAdmin === false && $scope.roleFour === true){
-        $('#four-form').show();
-      } else if (isAdmin === false && $scope.roleFive === true){
-        $('#five-form').show();
-      } else if (isAdmin === false && $scope.roleSix === true){
-        $('#six-form').show();
-      }
-    }
-    // if (firebaseObj.villageNewMessage === true && showingRoleOneChat === false) {
-    //   $('#chatBump').css('background-color','white');
-    // } else {
-    //   $('#chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-    // }
-    // if (firebaseObj.roleOneNewMessage === true && showingRoleOneChat === false) {
-    //   $('#one-chatBump').css('background-color','white');
-    // } else {
-    //   $('#one-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-    // }
-    // if (firebaseObj.roleTwoNewMessage === true && showingRoleTwoChat === false) {
-    //   $('#two-chatBump').css('background-color','white');
-    // } else {
-    //   $('#two-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-    // }
-    // if (firebaseObj.roleThreeNewMessage === true && showingRoleThreeChat === false) {
-    //   $('#three-chatBump').css('background-color','white');
-    // } else {
-    //   $('#three-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-    // }
-    // if (firebaseObj.roleFourNewMessage === true && showingRoleFourChat === false) {
-    //   $('#four-chatBump').css('background-color','white');
-    // } else {
-    //   $('#four-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-    // }
-    // if (firebaseObj.roleFiveNewMessage === true && showingRoleFiveChat === false) {
-    //   $('#five-chatBump').css('background-color','white');
-    // } else {
-    //   $('#five-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-    // }
-    // if (firebaseObj.roleSixNewMessage === true && showingRoleSixChat === false) {
-    //   $('#six-chatBump').css('background-color','white');
-    // } else {
-    //   $('#six-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-    // }
-    // $scope.roleOneName = firebaseObj.roleOneName;
-    // $scope.roleTwoName = firebaseObj.roleTwoName;
-    // $scope.roleThreeName = firebaseObj.roleThreeName;
-    // $scope.roleFourName = firebaseObj.roleFourName;
-    // $scope.roleFiveName = firebaseObj.roleFiveName;
-    // $scope.roleSixName = firebaseObj.roleSixName;
-    // $scope.chatLog = firebaseObj.thing;
+              let masterPassword = "";
 
-  });
-  let wasClicked = false;
-  $scope.newMessageTest = function(){
-    firebaseObj.testOne = roleOneNewMessage;
-    firebaseObj.$save();
-    // roleOneNewMessage = true;
-    // $('#one-chatBump').css('background-color','white');
-  };
+              $scope.addOne = function(index){
+                let fullNameOne = prompt('What is the Full Name of the player to add?');
+                $('#create').hide();
+                $('#delete').hide();
+                $('#kill').show();
+              };
 
-  var arrWatch = firebaseArr.$watch(function(){
-    $scope.profileTracker = currentProfiles(firebaseArr.profiles);
-    profiles = currentProfiles(firebaseArr.profiles);
-  });
+              $scope.deleteOne = function(){
+                let passwordCheck = prompt("Please enter the Master Password");
+                if (passwordCheck === masterPassword) {
+                  $('#profile-one').hide();
+                } else {
+                  alert("Incorrect password was entered.");
+                }
+              };
 
-  var chatWatch = firebaseChats.$watch(function(){
-    if (showingChat === false){
-      $('#chatBump').css('background-color','white');
-    } else {
-      $('#chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-    }
-  });
+              $scope.reviveOne = function(){
+                let passwordCheck = prompt("Please enter the Master Password");
+                if (passwordCheck === masterPassword) {
+                  let response = prompt(`You are about to revive this person; type YES to confirm this action.`).toUpperCase();
+                  if (response === "YES") {
+                    $('#profile-one-content').show();
+                    $('#rip-one').css("display","none");
+                  } else {
+                    alert("You have responded with something other than YES; no changes will take affect.");
+                  }
+                } else {
+                  alert("Incorrect password was entered.");
+                }
+              };
 
-  var RoleOneChatWatch = firebaseRoleOneChat.$watch(function(){
-    if (showingRoleOneChat === false) {
-      $('#one-chatBump').css('background-color','white');
-    } else {
-      $('#one-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-    }
-  });
 
-    var RoleTwoChatWatch = firebaseRoleTwoChat.$watch(function(){
-      if (showingRoleTwoChat === false) {
-        $('#two-chatBump').css('background-color','white');
-      } else {
-        $('#two-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-      }
-    });
+              let testRed = true;
 
-    var RoleThreeChatWatch = firebaseRoleThreeChat.$watch(function(){
-      if (showingRoleThreeChat === false) {
-        $('#three-chatBump').css('background-color','white');
-      } else {
-        $('#three-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-      }
-    });
+              var unwatch = firebaseObj.$watch(function(){
+                if (firebaseObj.daytime === false) {
+                  $('body').css('background-image','url("https://dl.dropbox.com/s/12i9f4kxm9uz71c/day_layered.jpg")');
+                  $scope.timeOfDay = "Night";
+                  if (isAdmin === false){
+                    $('#form').show();
+                    // $('#werewolf-chatBump').hide();
+                    $('#one-form').hide();
+                    $('#two-form').hide();
+                    $('#three-form').hide();
+                    $('#four-form').hide();
+                    $('#five-form').hide();
+                    $('#six-form').hide();
+                  }
+                } else if (firebaseObj.daytime === true) {
+                  $('body').css('background-image','url("https://dl.dropbox.com/s/5hqbjkhskrz6c47/night_layered.jpg")');
+                  $scope.timeOfDay = "Day";
+                  if (isAdmin === false && $scope.roleOne === true){
+                    $('#one-form').show();
+                  } else if (isAdmin === false && $scope.roleTwo === true){
+                    $('#two-form').show();
+                  } else if (isAdmin === false && $scope.roleThree === true){
+                    $('#three-form').show();
+                  } else if (isAdmin === false && $scope.roleFour === true){
+                    $('#four-form').show();
+                  } else if (isAdmin === false && $scope.roleFive === true){
+                    $('#five-form').show();
+                  } else if (isAdmin === false && $scope.roleSix === true){
+                    $('#six-form').show();
+                  }
+                }
+                // if (firebaseObj.villageNewMessage === true && showingRoleOneChat === false) {
+                //   $('#chatBump').css('background-color','white');
+                // } else {
+                //   $('#chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                // }
+                // if (firebaseObj.roleOneNewMessage === true && showingRoleOneChat === false) {
+                //   $('#one-chatBump').css('background-color','white');
+                // } else {
+                //   $('#one-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                // }
+                // if (firebaseObj.roleTwoNewMessage === true && showingRoleTwoChat === false) {
+                //   $('#two-chatBump').css('background-color','white');
+                // } else {
+                //   $('#two-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                // }
+                // if (firebaseObj.roleThreeNewMessage === true && showingRoleThreeChat === false) {
+                //   $('#three-chatBump').css('background-color','white');
+                // } else {
+                //   $('#three-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                // }
+                // if (firebaseObj.roleFourNewMessage === true && showingRoleFourChat === false) {
+                //   $('#four-chatBump').css('background-color','white');
+                // } else {
+                //   $('#four-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                // }
+                // if (firebaseObj.roleFiveNewMessage === true && showingRoleFiveChat === false) {
+                //   $('#five-chatBump').css('background-color','white');
+                // } else {
+                //   $('#five-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                // }
+                // if (firebaseObj.roleSixNewMessage === true && showingRoleSixChat === false) {
+                //   $('#six-chatBump').css('background-color','white');
+                // } else {
+                //   $('#six-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                // }
+                // $scope.roleOneName = firebaseObj.roleOneName;
+                // $scope.roleTwoName = firebaseObj.roleTwoName;
+                // $scope.roleThreeName = firebaseObj.roleThreeName;
+                // $scope.roleFourName = firebaseObj.roleFourName;
+                // $scope.roleFiveName = firebaseObj.roleFiveName;
+                // $scope.roleSixName = firebaseObj.roleSixName;
+                // $scope.chatLog = firebaseObj.thing;
 
-    var RoleFourChatWatch = firebaseRoleFourChat.$watch(function(){
-      if (showingRoleFourChat === false) {
-        $('#four-chatBump').css('background-color','white');
-      } else {
-        $('#four-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-      }
-    });
+              });
+              let wasClicked = false;
+              $scope.newMessageTest = function(){
+                firebaseObj.testOne = roleOneNewMessage;
+                firebaseObj.$save();
+                // roleOneNewMessage = true;
+                // $('#one-chatBump').css('background-color','white');
+              };
 
-    var RoleFiveChatWatch = firebaseRoleFiveChat.$watch(function(){
-      if (showingRoleFiveChat === false) {
-        $('#five-chatBump').css('background-color','white');
-      } else {
-        $('#five-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-      }
-    });
+              var arrWatch = firebaseArr.$watch(function(){
+                $scope.profileTracker = currentProfiles(firebaseArr.profiles);
+                profiles = currentProfiles(firebaseArr.profiles);
+              });
 
-    var RoleSixChatWatch = firebaseRoleSixChat.$watch(function(){
-      if (showingRoleSixChat === false) {
-        $('#six-chatBump').css('background-color','white');
-      } else {
-        $('#six-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-      }
-    });
+              var chatWatch = firebaseChats.$watch(function(){
+                if (showingChat === false){
+                  $('#chatBump').css('background-color','white');
+                } else {
+                  $('#chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                }
+              });
+
+              var RoleOneChatWatch = firebaseRoleOneChat.$watch(function(){
+                if (showingRoleOneChat === false) {
+                  $('#one-chatBump').css('background-color','white');
+                } else {
+                  $('#one-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                }
+              });
+
+              var RoleTwoChatWatch = firebaseRoleTwoChat.$watch(function(){
+                if (showingRoleTwoChat === false) {
+                  $('#two-chatBump').css('background-color','white');
+                } else {
+                  $('#two-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                }
+              });
+
+              var RoleThreeChatWatch = firebaseRoleThreeChat.$watch(function(){
+                if (showingRoleThreeChat === false) {
+                  $('#three-chatBump').css('background-color','white');
+                } else {
+                  $('#three-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                }
+              });
+
+              var RoleFourChatWatch = firebaseRoleFourChat.$watch(function(){
+                if (showingRoleFourChat === false) {
+                  $('#four-chatBump').css('background-color','white');
+                } else {
+                  $('#four-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                }
+              });
+
+              var RoleFiveChatWatch = firebaseRoleFiveChat.$watch(function(){
+                if (showingRoleFiveChat === false) {
+                  $('#five-chatBump').css('background-color','white');
+                } else {
+                  $('#five-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                }
+              });
+
+              var RoleSixChatWatch = firebaseRoleSixChat.$watch(function(){
+                if (showingRoleSixChat === false) {
+                  $('#six-chatBump').css('background-color','white');
+                } else {
+                  $('#six-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+                }
+              });
 
 
 
-    // $scope.listen = function() {
-    //   firebaseObj.timer = !firebaseObj.timer;
-    //   firebaseObj.$save();
-    // };
+              // $scope.listen = function() {
+              //   firebaseObj.timer = !firebaseObj.timer;
+              //   firebaseObj.$save();
+              // };
 
 
-    $scope.profileFrame = "http://img06.deviantart.net/b2bc/i/2015/202/b/7/638_surf_frame_by_tigers_stock-d926rr4.png";
-    $scope.timeOfDay = "Day";
+              $scope.profileFrame = "http://img06.deviantart.net/b2bc/i/2015/202/b/7/638_surf_frame_by_tigers_stock-d926rr4.png";
+              $scope.timeOfDay = "Day";
 
-    $scope.backgroundChange = function(){
-      firebaseObj.daytime = !firebaseObj.daytime;
-      firebaseObj.$save();
-    };
-  });
+              $scope.backgroundChange = function(){
+                firebaseObj.daytime = !firebaseObj.daytime;
+                firebaseObj.$save();
+              };
+            });

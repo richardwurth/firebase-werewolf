@@ -1,0 +1,11 @@
+<a style="position:absolute; top:10px" ng-click="showRoleSevenChat()"><img id="seven-arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
+<div class="scrollbar style-3" id="seven-chatWindow" class="custom-fade">
+  <h1 style="text-align: center; margin: 0px">{{roleSevenName}}</h1>
+  <ul id="chat-content" style="font-family: monospace">
+    <li ng-repeat="sevenchat in sevenchatLog track by $index"><span style="font-weight: bold">{{sevenchat.username}}:</span> {{sevenchat.message}}</li>
+  </ul>
+</div>
+<form id="seven-form" onsubmit="return false;">
+  <input type="text" id="sevenUserInput" />
+  <input id="chatInput" type="submit" ng-click="sevenSend()" />
+</form>

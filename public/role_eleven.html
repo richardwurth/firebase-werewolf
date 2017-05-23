@@ -1,0 +1,11 @@
+<a style="position:absolute; top:10px" ng-click="showRoleElevenChat()"><img id="eleven-arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
+<div class="scrollbar style-3" id="eleven-chatWindow" class="custom-fade">
+  <h1 style="text-align: center; margin: 0px">{{roleElevenName}}</h1>
+  <ul id="chat-content" style="font-family: monospace">
+    <li ng-repeat="elevenchat in elevenchatLog track by $index"><span style="font-weight: bold">{{elevenchat.username}}:</span> {{elevenchat.message}}</li>
+  </ul>
+</div>
+<form id="eleven-form" onsubmit="return false;">
+  <input type="text" id="elevenUserInput" />
+  <input id="chatInput" type="submit" ng-click="elevenSend()" />
+</form>
