@@ -1,0 +1,11 @@
+<a style="position:absolute; top:10px" ng-click="showRoleNineChat()"><img id="nine-arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
+<div class="scrollbar style-3" id="nine-chatWindow" class="custom-fade">
+  <h1 style="text-align: center; margin: 0px">{{roleNineName}}</h1>
+  <ul id="chat-content" style="font-family: monospace">
+    <li ng-repeat="ninechat in ninechatLog track by $index"><span style="font-weight: bold">{{ninechat.username}}:</span> {{ninechat.message}}</li>
+  </ul>
+</div>
+<form id="nine-form" onsubmit="return false;">
+  <input type="text" id="nineUserInput" />
+  <input id="chatInput" type="submit" ng-click="nineSend()" />
+</form>

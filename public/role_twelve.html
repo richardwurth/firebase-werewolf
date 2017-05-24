@@ -1,0 +1,11 @@
+<a style="position:absolute; top:10px" ng-click="showRoleTwelveChat()"><img id="twelve-arrow-direction" src="https://cdn3.iconfinder.com/data/icons/arrows/16/arrow__chevron-small-circle-4-01-512.png" width=30px alt=""></a>
+<div class="scrollbar style-3" id="twelve-chatWindow" class="custom-fade">
+  <h1 style="text-align: center; margin: 0px">{{roleTwelveName}}</h1>
+  <ul id="chat-content" style="font-family: monospace">
+    <li ng-repeat="twelvechat in twelvechatLog track by $index"><span style="font-weight: bold">{{twelvechat.username}}:</span> {{twelvechat.message}}</li>
+  </ul>
+</div>
+<form id="twelve-form" onsubmit="return false;">
+  <input type="text" id="twelveUserInput" />
+  <input id="chatInput" type="submit" ng-click="twelveSend()" />
+</form>

@@ -96,4 +96,14 @@ button {
   font-weight: bold;
   font-size: 18px; }
 
+#rightMenu {
+  position: absolute;
+  right: 5px;
+  width: 50px;
+  height: 400px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
 /*# sourceMappingURL=style.css.map */
