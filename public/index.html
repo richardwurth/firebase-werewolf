@@ -13,14 +13,15 @@
 
 </head>
 <body ng-controller='mainCtrl'>
-  <button ng-click="getRole()" name="button">Get My Role</button>
-  <button ng-click="generalTest()" name="button">Login</button>
-  <button ng-click="newMessageTest()" name="button">New Message</button>
+  <button id="role-button" ng-click="getRole()" name="button">Get My Role</button>
+  <button id="admin-button" ng-click="generalTest()" name="button">Admin Login</button>
+  <button id="username-button" ng-click="setUsername()" name="button">Set Username</button>
+  <!-- <button id="ghost-button" ng-if="isGhost" ng-click="ghostActivate()" name="button">DO NOT CLICK UNLESS YOU ARE KILLED OR LYNCHED</button> -->
   <button ng-if="timeChangeButton" ng-click="backgroundChange()" type="button" name="button">Change to {{timeOfDay}}</button>
   <div id="main-parent">
     <div id="cover">
       <button ng-if="addPlayerButton" id="add-player" ng-click="addProfile(0)" name="button">Add Player</button>
-      <button ng-if="showAllChats" ng-click="showChats()">Show All Chats</button>
+      <!-- <button ng-if="showAllChats" ng-click="showChats()">Show All Chats</button> -->
       <div id="profiles">
         <div id="profileRepeater" submit-required="true" ng-repeat="profile in profileTracker track by $index">
           <ng-include src=" 'profile.html' "></ng-include>

@@ -100,7 +100,8 @@ button {
   position: absolute;
   right: 5px;
   width: 50px;
-  height: 400px;
+  bottom: 2%;
+  height: 700px;
   display: flex;
   justify-content: space-around;
   align-items: center;

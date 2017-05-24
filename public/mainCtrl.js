@@ -40,17 +40,14 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
 
   var firebaseAnnouncements = $firebaseArray(announcementsRef);
 
-
   firebaseArr.profiles = firebaseArr;
 
-  $scope.login = function(){
-    let temp = prompt("What's the password?");
-    if (temp === firebaseObj.password) {
-      $(".hidden").css('display','inline');
-    }
-  };
-
-  let username = prompt("What is your first name?");
+  let username = "";
+  $scope.setUsername = function(){
+    username = prompt("What is your first name?");
+    alert("Your username has been set to " + username);
+    $('#username-button').hide();
+  }
 
   $scope.chatLog = $firebaseArray(chatRef);
   // $scope.werewolfchatLog = $firebaseArray(werewolfChatRef);
@@ -71,8 +68,9 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   $scope.announcementsLogs = $firebaseArray(announcementsRef);
 
   // let werewolfPassword = "TEST";
-
   // $scope.isWerewolf = false;
+  let adminPassword = "";
+
   $scope.publicNotice = false;
   $scope.showKillButton = false;
   $scope.addPlayerButton = false;
@@ -129,40 +127,80 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   firebaseObj.villageNewMessage = false;
 
   $scope.getRole = function(){
-    let declaration = prompt("Please enter the password for your role.");
+    let declaration = "";
+    if(username === ""){
+      alert("You must first set your username before getting your role!");
+    } else {
+      declaration = prompt("Please enter the password for your role.");
+    };
     if (declaration == firebaseObj.roleOnePassword){
       $scope.roleOne = true;
+      alert("Welcome, " + firebaseObj.roleOneName + "!");
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleTwoPassword){
       $scope.roleTwo = true;
+      alert("Welcome, " + firebaseObj.roleTwoName + "!");
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleThreePassword){
+      alert("Welcome, " + firebaseObj.roleThreeName + "!");
       $scope.roleThree = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleFourPassword){
+      alert("Welcome, " + firebaseObj.roleFourName + "!");
       $scope.roleFour = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleFivePassword){
+      alert("Welcome, " + firebaseObj.roleFiveName + "!");
       $scope.roleFive = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleSixPassword){
+      alert("Welcome, " + firebaseObj.roleSixName + "!");
       $scope.roleSix = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleSevenPassword){
+      alert("Welcome, " + firebaseObj.roleSevenName + "!");
       $scope.roleSeven = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleEightPassword){
+      alert("Welcome, " + firebaseObj.roleEightName + "!");
       $scope.roleEight = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleNinePassword){
+      alert("Welcome, " + firebaseObj.roleNineName + "!");
       $scope.roleNine = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleTenPassword){
+      alert("Welcome, " + firebaseObj.roleTenName + "!");
       $scope.roleTen = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleElevenPassword){
+      alert("Welcome, " + firebaseObj.roleElevenName + "!");
       $scope.roleEleven = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else if (declaration == firebaseObj.roleTwelvePassword){
+      alert("Welcome, " + firebaseObj.roleTwelveName + "!");
       $scope.roleTwelve = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
     } else {
       alert("That password does not match any roles.");
     }
   };
 
-  let adminPassword = "TEST123";
   let isAdmin = false;
 
-  $scope.showChats = function(){
+  const showChats = function(){
     $scope.roleOne = true;
     $scope.roleTwo = true;
     $scope.roleThree = true;
@@ -245,15 +283,22 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   };
 
   $scope.generalTest = function(){
-    let verify = prompt("Please enter the Admin Password").toUpperCase();
-    if (verify == adminPassword) {
+    let adminPassword = firebaseObj.adminPassword;
+    let verify = "";
+    if(username === ""){
+      alert("You must first set your username before logging in as admin!");
+    } else {
+      verify = prompt("Please enter the Admin Password");
+    };
+    if (verify === adminPassword) {
       isAdmin = true;
       $scope.showAllChats = true;
-      // $scope.isWerewolf = true;
+      $('#role-button').hide();
+      $('#admin-button').hide();
       $scope.publicNotice = true;
       $scope.addPlayerButton = true;
       $scope.timeChangeButton = true;
-      $scope.showChats();
+      showChats();
     } else {
       alert("Nice try.");
     }
@@ -431,18 +476,22 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   let showingRoleOneChat = false;
   $scope.showRoleOneChat = function() {
     if (showingRoleOneChat === false){
+      showingRoleOneChat = true;
       $('#one-chatBump').css('right','235px');
       $('#one-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#one-chatWindow').css('width','230px');
-      $('#one-form').show();
+       if (isAdmin === true){
+        $('#one-form').show();
+   } else if (firebaseObj.daytime === false){
+        $('#one-form').show();
+      }
       $('#one-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-      showingRoleOneChat = true;
     } else {
+      showingRoleOneChat = false;
       $('#one-chatBump').css('right','0px');
       $('#one-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
       $('#one-chatWindow').css('width','0px');
       $('#one-form').hide();
-      showingRoleOneChat = false;
     }
   };
   let showingRoleTwoChat = false;
@@ -451,17 +500,19 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#two-chatBump').css('right','235px');
       $('#two-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#two-chatWindow').css('width','230px');
-      $('#two-form').show();
+       if(isAdmin === true){
+        $('#two-form').show();
+   } else if (firebaseObj.daytime === false){
+        $('#two-form').show();
+      }
       $('#two-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleTwoChat = true;
-      console.log(showingRoleTwoChat);
     } else {
       $('#two-chatBump').css('right','0px');
       $('#two-arrow-direction').css('transform','rotate(' + 180 + 'deg)');
       $('#two-chatWindow').css('width','0px');
       $('#two-form').hide();
       showingRoleTwoChat = false;
-      console.log(showingRoleTwoChat);
     }
   };
   let showingRoleThreeChat = false;
@@ -470,7 +521,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#three-chatBump').css('right','235px');
       $('#three-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#three-chatWindow').css('width','230px');
-      $('#three-form').show();
+      if(isAdmin === true){
+        $('#three-form').show();
+      } else if (firebaseObj.daytime === false){
+        $('#three-form').show();
+      }
       $('#three-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleThreeChat = true;
     } else {
@@ -487,7 +542,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#four-chatBump').css('right','235px');
       $('#four-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#four-chatWindow').css('width','230px');
-      $('#four-form').show();
+       if(isAdmin === true){
+        $('#four-form').show();
+     } else if (firebaseObj.daytime === false){
+        $('#four-form').show();
+      }
       $('#four-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleFourChat = true;
     } else {
@@ -504,7 +563,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#five-chatBump').css('right','235px');
       $('#five-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#five-chatWindow').css('width','230px');
-      $('#five-form').show();
+       if(isAdmin === true){
+        $('#five-form').show();
+     } else if (firebaseObj.daytime === false){
+        $('#five-form').show();
+      }
       $('#five-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleFiveChat = true;
     } else {
@@ -521,7 +584,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#six-chatBump').css('right','235px');
       $('#six-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#six-chatWindow').css('width','230px');
-      $('#six-form').show();
+       if(isAdmin === true){
+        $('#six-form').show();
+   } else if (firebaseObj.daytime === false){
+        $('#six-form').show();
+      }
       $('#six-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleSixChat = true;
     } else {
@@ -538,7 +605,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#seven-chatBump').css('right','235px');
       $('#seven-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#seven-chatWindow').css('width','230px');
-      $('#seven-form').show();
+      if(isAdmin === true){
+        $('#seven-form').show();
+      } else if (firebaseObj.daytime === false){
+        $('#seven-form').show();
+      }
       $('#seven-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleSevenChat = true;
     } else {
@@ -555,7 +626,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#eight-chatBump').css('right','235px');
       $('#eight-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#eight-chatWindow').css('width','230px');
-      $('#eight-form').show();
+      if(isAdmin === true){
+        $('#eight-form').show();
+      } else if (firebaseObj.daytime === false){
+        $('#eight-form').show();
+      }
       $('#eight-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleEightChat = true;
     } else {
@@ -572,7 +647,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#nine-chatBump').css('right','235px');
       $('#nine-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#nine-chatWindow').css('width','230px');
-      $('#nine-form').show();
+       if(isAdmin === true){
+        $('#nine-form').show();
+     } else if (firebaseObj.daytime === false){
+        $('#nine-form').show();
+      }
       $('#nine-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleNineChat = true;
     } else {
@@ -589,7 +668,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#ten-chatBump').css('right','235px');
       $('#ten-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#ten-chatWindow').css('width','230px');
-      $('#ten-form').show();
+       if(isAdmin === true){
+        $('#ten-form').show();
+   } else if (firebaseObj.daytime === false){
+        $('#ten-form').show();
+      }
       $('#ten-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleTenChat = true;
     } else {
@@ -606,7 +689,11 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $('#eleven-chatBump').css('right','235px');
       $('#eleven-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#eleven-chatWindow').css('width','230px');
-      $('#eleven-form').show();
+      if (isAdmin === true){
+        $('#eleven-form').show();
+      } else if (firebaseObj.daytime === false){
+        $('#eleven-form').show();
+      }
       $('#eleven-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleElevenChat = true;
     } else {
@@ -617,13 +704,17 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       showingRoleElevenChat = false;
     }
   };
-  let showingRoleSixChat = false;
+  let showingRoleTwelveChat = false;
   $scope.showRoleTwelveChat = function() {
     if (showingRoleTwelveChat === false){
       $('#twelve-chatBump').css('right','235px');
       $('#twelve-arrow-direction').css('transform','rotate(' + 0 + 'deg)');
       $('#twelve-chatWindow').css('width','230px');
-      $('#twelve-form').show();
+      if (isAdmin === true){
+        $('#twelve-form').show();
+      } else if (firebaseObj.daytime === false){
+        $('#twelve-form').show();
+      }
       $('#twelve-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
       showingRoleTwelveChat = true;
     } else {
@@ -725,47 +816,47 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
                 $scope.roleSixName = role;
                 firebaseObj.roleSixPassword = password;
                 firebaseObj.$save();
-              } else if ($scope.roleOneName !== "") {
-                if ($scope.roleTwoName === "") {
-                  $scope.roleTwo = true;
-                  firebaseObj.roleTwoName = role;
-                  $scope.roleTwoName = role;
-                  firebaseObj.roleTwoPassword = password;
+              } else if ($scope.roleSixName !== "") {
+                if ($scope.roleSevenName === "") {
+                  $scope.roleSeven = true;
+                  firebaseObj.roleSevenName = role;
+                  $scope.roleSevenName = role;
+                  firebaseObj.roleSevenPassword = password;
                   firebaseObj.$save();
-                } else if ($scope.roleOneName !== "") {
-                  if ($scope.roleTwoName === "") {
-                    $scope.roleTwo = true;
-                    firebaseObj.roleTwoName = role;
-                    $scope.roleTwoName = role;
-                    firebaseObj.roleTwoPassword = password;
+                } else if ($scope.roleSevenName !== "") {
+                  if ($scope.roleEightName === "") {
+                    $scope.roleEight = true;
+                    firebaseObj.roleEightName = role;
+                    $scope.roleEightName = role;
+                    firebaseObj.roleEightPassword = password;
                     firebaseObj.$save();
-                  } else if ($scope.roleOneName !== "") {
-                    if ($scope.roleTwoName === "") {
-                      $scope.roleTwo = true;
-                      firebaseObj.roleTwoName = role;
-                      $scope.roleTwoName = role;
-                      firebaseObj.roleTwoPassword = password;
+                  } else if ($scope.roleEightName !== "") {
+                    if ($scope.roleNineName === "") {
+                      $scope.roleNine = true;
+                      firebaseObj.roleNineName = role;
+                      $scope.roleNineName = role;
+                      firebaseObj.roleNinePassword = password;
                       firebaseObj.$save();
-                    } else if ($scope.roleOneName !== "") {
-                      if ($scope.roleTwoName === "") {
-                        $scope.roleTwo = true;
-                        firebaseObj.roleTwoName = role;
-                        $scope.roleTwoName = role;
-                        firebaseObj.roleTwoPassword = password;
+                    } else if ($scope.roleNineName !== "") {
+                      if ($scope.roleTenName === "") {
+                        $scope.roleTen = true;
+                        firebaseObj.roleTenName = role;
+                        $scope.roleTenName = role;
+                        firebaseObj.roleTenPassword = password;
                         firebaseObj.$save();
-                      } else if ($scope.roleOneName !== "") {
-                        if ($scope.roleTwoName === "") {
-                          $scope.roleTwo = true;
-                          firebaseObj.roleTwoName = role;
-                          $scope.roleTwoName = role;
-                          firebaseObj.roleTwoPassword = password;
+                      } else if ($scope.roleTenName !== "") {
+                        if ($scope.roleElevenName === "") {
+                          $scope.roleEleven = true;
+                          firebaseObj.roleElevenName = role;
+                          $scope.roleElevenName = role;
+                          firebaseObj.roleElevenPassword = password;
                           firebaseObj.$save();
-                        } else if ($scope.roleOneName !== "") {
-                          if ($scope.roleTwoName === "") {
-                            $scope.roleTwo = true;
-                            firebaseObj.roleTwoName = role;
-                            $scope.roleTwoName = role;
-                            firebaseObj.roleTwoPassword = password;
+                        } else if ($scope.roleElevenName !== "") {
+                          if ($scope.roleTwelveName === "") {
+                            $scope.roleTwelve = true;
+                            firebaseObj.roleTwelveName = role;
+                            $scope.roleTwelveName = role;
+                            firebaseObj.roleTwelvePassword = password;
                             firebaseObj.$save();
                           }
                         }
@@ -774,219 +865,226 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
                   }
                 }
               }
+            }
+          }
+        }
+      }
+    }
 
 
-                let splitNameOne = fullNameOne.split(" ");
-                let lastOne = splitNameOne[1].charAt(0).toUpperCase()+".";
-                let firstOne = splitNameOne[0].charAt(0).toUpperCase()+".";
-                let newPerson = {
-                  fullNameOne: fullNameOne,
-                  firstName: fullNameOne,
-                  lastOne: lastOne,
-                  firstOne: firstOne,
-                  custom: true,
-                  showDead: false,
-                  role: role
-                };
-                profiles.push(newPerson);
-                firebaseArr[0] = profiles;
-                $scope.profileTracker = profiles;
-                firebaseArr.$add(profiles);
-              };
+    let splitNameOne = fullNameOne.split(" ");
+    let lastOne = splitNameOne[1].charAt(0).toUpperCase()+".";
+    let firstOne = splitNameOne[0].charAt(0).toUpperCase()+".";
+    let newPerson = {
+      fullNameOne: fullNameOne,
+      firstName: fullNameOne,
+      lastOne: lastOne,
+      firstOne: firstOne,
+      custom: true,
+      showDead: false,
+      role: role
+    };
+    profiles.push(newPerson);
+    firebaseArr[0] = profiles;
+    $scope.profileTracker = profiles;
+    firebaseArr.$add(profiles);
+  };
 
-              let masterPassword = "";
+  let masterPassword = "";
 
-              $scope.addOne = function(index){
-                let fullNameOne = prompt('What is the Full Name of the player to add?');
-                $('#create').hide();
-                $('#delete').hide();
-                $('#kill').show();
-              };
+  $scope.addOne = function(index){
+    let fullNameOne = prompt('What is the Full Name of the player to add?');
+    $('#create').hide();
+    $('#delete').hide();
+    $('#kill').show();
+  };
 
-              $scope.deleteOne = function(){
-                let passwordCheck = prompt("Please enter the Master Password");
-                if (passwordCheck === masterPassword) {
-                  $('#profile-one').hide();
-                } else {
-                  alert("Incorrect password was entered.");
-                }
-              };
+  $scope.deleteOne = function(){
+    let passwordCheck = prompt("Please enter the Master Password");
+    if (passwordCheck === masterPassword) {
+      $('#profile-one').hide();
+    } else {
+      alert("Incorrect password was entered.");
+    }
+  };
 
-              $scope.reviveOne = function(){
-                let passwordCheck = prompt("Please enter the Master Password");
-                if (passwordCheck === masterPassword) {
-                  let response = prompt(`You are about to revive this person; type YES to confirm this action.`).toUpperCase();
-                  if (response === "YES") {
-                    $('#profile-one-content').show();
-                    $('#rip-one').css("display","none");
-                  } else {
-                    alert("You have responded with something other than YES; no changes will take affect.");
-                  }
-                } else {
-                  alert("Incorrect password was entered.");
-                }
-              };
-
-
-              let testRed = true;
-
-              var unwatch = firebaseObj.$watch(function(){
-                if (firebaseObj.daytime === false) {
-                  $('body').css('background-image','url("https://dl.dropbox.com/s/12i9f4kxm9uz71c/day_layered.jpg")');
-                  $scope.timeOfDay = "Night";
-                  if (isAdmin === false){
-                    $('#form').show();
-                    // $('#werewolf-chatBump').hide();
-                    $('#one-form').hide();
-                    $('#two-form').hide();
-                    $('#three-form').hide();
-                    $('#four-form').hide();
-                    $('#five-form').hide();
-                    $('#six-form').hide();
-                  }
-                } else if (firebaseObj.daytime === true) {
-                  $('body').css('background-image','url("https://dl.dropbox.com/s/5hqbjkhskrz6c47/night_layered.jpg")');
-                  $scope.timeOfDay = "Day";
-                  if (isAdmin === false && $scope.roleOne === true){
-                    $('#one-form').show();
-                  } else if (isAdmin === false && $scope.roleTwo === true){
-                    $('#two-form').show();
-                  } else if (isAdmin === false && $scope.roleThree === true){
-                    $('#three-form').show();
-                  } else if (isAdmin === false && $scope.roleFour === true){
-                    $('#four-form').show();
-                  } else if (isAdmin === false && $scope.roleFive === true){
-                    $('#five-form').show();
-                  } else if (isAdmin === false && $scope.roleSix === true){
-                    $('#six-form').show();
-                  }
-                }
-                // if (firebaseObj.villageNewMessage === true && showingRoleOneChat === false) {
-                //   $('#chatBump').css('background-color','white');
-                // } else {
-                //   $('#chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                // }
-                // if (firebaseObj.roleOneNewMessage === true && showingRoleOneChat === false) {
-                //   $('#one-chatBump').css('background-color','white');
-                // } else {
-                //   $('#one-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                // }
-                // if (firebaseObj.roleTwoNewMessage === true && showingRoleTwoChat === false) {
-                //   $('#two-chatBump').css('background-color','white');
-                // } else {
-                //   $('#two-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                // }
-                // if (firebaseObj.roleThreeNewMessage === true && showingRoleThreeChat === false) {
-                //   $('#three-chatBump').css('background-color','white');
-                // } else {
-                //   $('#three-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                // }
-                // if (firebaseObj.roleFourNewMessage === true && showingRoleFourChat === false) {
-                //   $('#four-chatBump').css('background-color','white');
-                // } else {
-                //   $('#four-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                // }
-                // if (firebaseObj.roleFiveNewMessage === true && showingRoleFiveChat === false) {
-                //   $('#five-chatBump').css('background-color','white');
-                // } else {
-                //   $('#five-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                // }
-                // if (firebaseObj.roleSixNewMessage === true && showingRoleSixChat === false) {
-                //   $('#six-chatBump').css('background-color','white');
-                // } else {
-                //   $('#six-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                // }
-                // $scope.roleOneName = firebaseObj.roleOneName;
-                // $scope.roleTwoName = firebaseObj.roleTwoName;
-                // $scope.roleThreeName = firebaseObj.roleThreeName;
-                // $scope.roleFourName = firebaseObj.roleFourName;
-                // $scope.roleFiveName = firebaseObj.roleFiveName;
-                // $scope.roleSixName = firebaseObj.roleSixName;
-                // $scope.chatLog = firebaseObj.thing;
-
-              });
-              let wasClicked = false;
-              $scope.newMessageTest = function(){
-                firebaseObj.testOne = roleOneNewMessage;
-                firebaseObj.$save();
-                // roleOneNewMessage = true;
-                // $('#one-chatBump').css('background-color','white');
-              };
-
-              var arrWatch = firebaseArr.$watch(function(){
-                $scope.profileTracker = currentProfiles(firebaseArr.profiles);
-                profiles = currentProfiles(firebaseArr.profiles);
-              });
-
-              var chatWatch = firebaseChats.$watch(function(){
-                if (showingChat === false){
-                  $('#chatBump').css('background-color','white');
-                } else {
-                  $('#chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                }
-              });
-
-              var RoleOneChatWatch = firebaseRoleOneChat.$watch(function(){
-                if (showingRoleOneChat === false) {
-                  $('#one-chatBump').css('background-color','white');
-                } else {
-                  $('#one-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                }
-              });
-
-              var RoleTwoChatWatch = firebaseRoleTwoChat.$watch(function(){
-                if (showingRoleTwoChat === false) {
-                  $('#two-chatBump').css('background-color','white');
-                } else {
-                  $('#two-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                }
-              });
-
-              var RoleThreeChatWatch = firebaseRoleThreeChat.$watch(function(){
-                if (showingRoleThreeChat === false) {
-                  $('#three-chatBump').css('background-color','white');
-                } else {
-                  $('#three-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                }
-              });
-
-              var RoleFourChatWatch = firebaseRoleFourChat.$watch(function(){
-                if (showingRoleFourChat === false) {
-                  $('#four-chatBump').css('background-color','white');
-                } else {
-                  $('#four-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                }
-              });
-
-              var RoleFiveChatWatch = firebaseRoleFiveChat.$watch(function(){
-                if (showingRoleFiveChat === false) {
-                  $('#five-chatBump').css('background-color','white');
-                } else {
-                  $('#five-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                }
-              });
-
-              var RoleSixChatWatch = firebaseRoleSixChat.$watch(function(){
-                if (showingRoleSixChat === false) {
-                  $('#six-chatBump').css('background-color','white');
-                } else {
-                  $('#six-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
-                }
-              });
+  $scope.reviveOne = function(){
+    let passwordCheck = prompt("Please enter the Master Password");
+    if (passwordCheck === masterPassword) {
+      let response = prompt(`You are about to revive this person; type YES to confirm this action.`).toUpperCase();
+      if (response === "YES") {
+        $('#profile-one-content').show();
+        $('#rip-one').css("display","none");
+      } else {
+        alert("You have responded with something other than YES; no changes will take affect.");
+      }
+    } else {
+      alert("Incorrect password was entered.");
+    }
+  };
 
 
+  let testRed = true;
 
-              // $scope.listen = function() {
-              //   firebaseObj.timer = !firebaseObj.timer;
-              //   firebaseObj.$save();
-              // };
+  var unwatch = firebaseObj.$watch(function(){
+    if (firebaseObj.daytime === true) {
+      $('body').css('background-image','url("https://dl.dropbox.com/s/12i9f4kxm9uz71c/day_layered.jpg")');
+      $scope.timeOfDay = "Night";
+      if (isAdmin === false){
+        $('#form').show();
+        // $('#werewolf-chatBump').hide();
+        $('#one-form').hide();
+        $('#two-form').hide();
+        $('#three-form').hide();
+        $('#four-form').hide();
+        $('#five-form').hide();
+        $('#six-form').hide();
+        $('#seven-form').hide();
+        $('#eight-form').hide();
+        $('#nine-form').hide();
+        $('#ten-form').hide();
+        $('#eleven-form').hide();
+        $('#twelve-form').hide();
+      }
+    } else if (firebaseObj.daytime === false) {
+      $('body').css('background-image','url("https://dl.dropbox.com/s/5hqbjkhskrz6c47/night_layered.jpg")');
+      $scope.timeOfDay = "Day";
+      if (isAdmin === false){
+        $('#form').hide();
+      }
+    }
+
+  });
+  let wasClicked = false;
+  $scope.newMessageTest = function(){
+    firebaseObj.testOne = roleOneNewMessage;
+    firebaseObj.$save();
+    // roleOneNewMessage = true;
+    // $('#one-chatBump').css('background-color','white');
+  };
+
+  var arrWatch = firebaseArr.$watch(function(){
+    $scope.profileTracker = currentProfiles(firebaseArr.profiles);
+    profiles = currentProfiles(firebaseArr.profiles);
+  });
+
+  var chatWatch = firebaseChats.$watch(function(){
+    if (showingChat === false){
+      $('#chatBump').css('background-color','white');
+    } else {
+      $('#chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleOneChatWatch = firebaseRoleOneChat.$watch(function(){
+    if (showingRoleOneChat === false) {
+      $('#one-chatBump').css('background-color','white');
+    } else {
+      $('#one-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleTwoChatWatch = firebaseRoleTwoChat.$watch(function(){
+    if (showingRoleTwoChat === false) {
+      $('#two-chatBump').css('background-color','white');
+    } else {
+      $('#two-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleThreeChatWatch = firebaseRoleThreeChat.$watch(function(){
+    if (showingRoleThreeChat === false) {
+      $('#three-chatBump').css('background-color','white');
+    } else {
+      $('#three-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleFourChatWatch = firebaseRoleFourChat.$watch(function(){
+    if (showingRoleFourChat === false) {
+      $('#four-chatBump').css('background-color','white');
+    } else {
+      $('#four-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleFiveChatWatch = firebaseRoleFiveChat.$watch(function(){
+    if (showingRoleFiveChat === false) {
+      $('#five-chatBump').css('background-color','white');
+    } else {
+      $('#five-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleSixChatWatch = firebaseRoleSixChat.$watch(function(){
+    if (showingRoleSixChat === false) {
+      $('#six-chatBump').css('background-color','white');
+    } else {
+      $('#six-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleSevenChatWatch = firebaseRoleSevenChat.$watch(function(){
+    if (showingRoleSevenChat === false) {
+      $('#seven-chatBump').css('background-color','white');
+    } else {
+      $('#seven-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleEightChatWatch = firebaseRoleEightChat.$watch(function(){
+    if (showingRoleEightChat === false) {
+      $('#eight-chatBump').css('background-color','white');
+    } else {
+      $('#eight-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleNineChatWatch = firebaseRoleNineChat.$watch(function(){
+    if (showingRoleNineChat === false) {
+      $('#nine-chatBump').css('background-color','white');
+    } else {
+      $('#nine-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleTenChatWatch = firebaseRoleTenChat.$watch(function(){
+    if (showingRoleTenChat === false) {
+      $('#ten-chatBump').css('background-color','white');
+    } else {
+      $('#ten-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleElevenChatWatch = firebaseRoleElevenChat.$watch(function(){
+    if (showingRoleElevenChat === false) {
+      $('#eleven-chatBump').css('background-color','white');
+    } else {
+      $('#eleven-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
+
+  var RoleTwelveChatWatch = firebaseRoleTwelveChat.$watch(function(){
+    if (showingRoleTwelveChat === false) {
+      $('#twelve-chatBump').css('background-color','white');
+    } else {
+      $('#twelve-chatBump').css('background-color','rgba(140, 140, 140, 0.6)');
+    }
+  });
 
 
-              $scope.profileFrame = "http://img06.deviantart.net/b2bc/i/2015/202/b/7/638_surf_frame_by_tigers_stock-d926rr4.png";
-              $scope.timeOfDay = "Day";
 
-              $scope.backgroundChange = function(){
-                firebaseObj.daytime = !firebaseObj.daytime;
-                firebaseObj.$save();
-              };
-            });
+  // $scope.listen = function() {
+  //   firebaseObj.timer = !firebaseObj.timer;
+  //   firebaseObj.$save();
+  // };
+
+
+  $scope.profileFrame = "http://img06.deviantart.net/b2bc/i/2015/202/b/7/638_surf_frame_by_tigers_stock-d926rr4.png";
+  $scope.timeOfDay = "Day";
+
+  $scope.backgroundChange = function(){
+    firebaseObj.daytime = !firebaseObj.daytime;
+    firebaseObj.$save();
+  };
+});
