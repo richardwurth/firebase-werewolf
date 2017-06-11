@@ -1,0 +1,20 @@
+<div class="container">
+    <!-- This checkbox will give us the toggle behavior, it will be hidden, but functional -->
+    <input id="toggle" type="checkbox">
+
+    <!-- IMPORTANT: Any element that we want to modify when the checkbox state changes go here, being "sibling" of the checkbox element -->
+
+    <!-- This label is tied to the checkbox, and it will contain the toggle "buttons" -->
+    <label class="toggle-container" for="toggle">
+        <!-- If menu is open, it will be the "X" icon, otherwise just a clickable area behind the hamburger menu icon -->
+        <span class="button button-toggle"></span>
+    </label>
+
+    <!-- The nav menu -->
+    <nav class="nav">
+        <a ng-click="getRole()" class="nav-item" href="">Get_My_Role</a>
+        <a ng-click="generalTest()" class="nav-item" href="">Admin_Login</a>
+        <a ng-if="timeChangeButton" ng-click="backgroundChange()" class="nav-item" href="">Change to {{timeOfDay}}</a>
+        <a ng-if="addPlayerButton" class="nav-item" href="" ng-click="addProfile(0)">Add_Player</a>
+    </nav>
+</div>
