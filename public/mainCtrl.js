@@ -201,6 +201,7 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   let isAdmin = false;
 
   const showChats = function(){
+    $('#form').show();
     $scope.roleOne = true;
     $scope.roleTwo = true;
     $scope.roleThree = true;
