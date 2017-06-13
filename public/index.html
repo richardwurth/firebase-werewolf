@@ -15,12 +15,13 @@
 
 </head>
 <body ng-controller='mainCtrl'>
+  <button ng-click="deleteCommand()" type="button" name="button">Removal</button>
   <!-- <button ng-click="getRole()" name="button">Get My Role</button> -->
   <!-- <button ng-click="generalTest()" name="button">Login</button> -->
   <!-- <button ng-click="newMessageTest()" name="button">New Message</button> -->
   <!-- <button ng-if="timeChangeButton" ng-click="backgroundChange()" type="button" name="button">Change to {{timeOfDay}}</button> -->
   <div id="main-parent">
-    <ng-include src=" 'menu.html' "></ng-include>
+    <ng-include src=" 'menu.html' " id="ham-menu"></ng-include>
     <div id="cover">
       <!-- <button ng-if="addPlayerButton" id="add-player" ng-click="addProfile(0)" name="button">Add Player</button> -->
       <!-- <button ng-if="showAllChats" ng-click="showChats()">Show All Chats</button> -->
@@ -30,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div id="chatBump">
+    <div style="z-index:101" id="chatBump">
       <ng-include src=" 'village.html' "></ng-include>
     </div>
     <div id="rightMenu">

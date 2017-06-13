@@ -6,6 +6,11 @@ a {
   text-decoration: none;
 }
 
+.creation {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .container {
   position: absolute;
   margin: 35px auto 0;
@@ -15,9 +20,20 @@ a {
   overflow: hidden;
   left: 20px;
   top: 10px;
+  z-index: 100;
 }
 
+.effect {
+  transition: all .5s ease;
+}
 
+.effect:hover {
+  font-size: 24px;
+  background-color: rgba(140, 140, 140, 0.6);
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bolder;
+}
 /* Toggle functionality */
 
 // To hide the checkbox
@@ -160,6 +176,7 @@ a {
   // Don't want pointer-events as menu is closed
   pointer-events: none;
   transition: $transition-duration;
+  z-index: 100;
 }
 
 // Showing nav items as lines, making up the hamburger menu icon

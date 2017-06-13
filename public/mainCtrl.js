@@ -3,7 +3,7 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   var ref = firebase.database().ref().child('profiles');
   var chatRef = firebase.database().ref().child('chats');
   // var werewolfChatRef = firebase.database().ref().child('werewolfChat')
-  var announcementsRef = firebase.database().ref().child('announcements')
+  var announcementsRef = firebase.database().ref().child('announcements');
   var secondRef = firebase.database().ref();
   var oneChatRef = firebase.database().ref().child('role_one_chat');
   var twoChatRef = firebase.database().ref().child('role_two_chat');
@@ -17,8 +17,6 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   var tenChatRef = firebase.database().ref().child('role_ten_chat');
   var elevenChatRef = firebase.database().ref().child('role_eleven_chat');
   var twelveChatRef = firebase.database().ref().child('role_twelve_chat');
-
-
 
 
   var firebaseObj = $firebaseObject(secondRef);
@@ -50,7 +48,34 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
     }
   };
 
-  let username = prompt("What is your first name?");
+  let username = "";
+  $scope.noUsername = true;
+  $scope.settingUsername = false;
+  $scope.setUsername = function(){
+    if ($scope.settingUsername === true){
+      $scope.settingUsername = false;
+    } else {
+      $scope.settingUsername = true;
+    }
+  };
+
+  // $scope.usernameSet = function(){
+  //   username = document.getElementById("usernameInput").value;
+  //   $scope.noUsername = false;
+  //   $scope.settingUsername = false;
+  // };
+
+  let menuOpen = false;
+
+  $scope.menuBackground = function(){
+    if(menuOpen === false){
+      $('#ham-menu').css("z-index","100");
+      menuOpen = true;
+    } else {
+      $('#ham-menu').css("z-index","10");
+      menuOpen = false;
+    }
+  };
 
   $scope.chatLog = $firebaseArray(chatRef);
   // $scope.werewolfchatLog = $firebaseArray(werewolfChatRef);
@@ -161,6 +186,7 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
 
   let adminPassword = "TEST123";
   let isAdmin = false;
+  $scope.nonAdmin = true;
 
   $scope.showChats = function(){
     $scope.roleOne = true;
@@ -253,6 +279,7 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
       $scope.publicNotice = true;
       $scope.addPlayerButton = true;
       $scope.timeChangeButton = true;
+      $scope.nonAdmin = false;
       $scope.showChats();
     } else {
       alert("Nice try.");
@@ -673,13 +700,40 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
   $scope.roleTwelveName = "";
 
 
+  $scope.addProfileTest = function() {
+    let fullNameOne = document.getElementById("lnInput").value + " " + document.getElementById("fnInput").value;
+    username = document.getElementById("usernameInput").value;
+    let role = "";
 
+    $scope.noUsername = false;
+    $scope.settingUsername = false;
+
+                let splitNameOne = fullNameOne.split(" ");
+                let lastOne = splitNameOne[1].charAt(0).toUpperCase()+".";
+                let firstOne = splitNameOne[0].charAt(0).toUpperCase()+".";
+                let newPerson = {
+                  fullNameOne: fullNameOne,
+                  firstName: fullNameOne,
+                  lastOne: lastOne,
+                  firstOne: firstOne,
+                  custom: true,
+                  showDead: false,
+                  role: role
+                };
+                profiles.push(newPerson);
+                firebaseArr[0] = profiles;
+                $scope.profileTracker = profiles;
+                firebaseArr.$add(profiles);
+              };
 
 
   $scope.addProfile = function() {
-    let fullNameOne = prompt('What is the Full Name of the player to add?');
+    username = document.getElementById("usernameInput").value;
+    let fullNameOne = document.getElementById("fnInput").value + " " + document.getElementById("lnInput").value;
     let role = prompt('What is the role of this player?');
     let password = prompt("Please create a password for access to the chat for this role");
+    $scope.noUsername = false;
+    $scope.settingUsername = false;
     // firebaseObj.$save();
     if (role === "villager" || role === "VILLAGER" || role === "Villager") {
       alert("OK it's a common folk!");
@@ -808,13 +862,20 @@ angular.module('app').controller('mainCtrl', function($scope, $firebaseObject, $
                 $('#kill').show();
               };
 
-              $scope.deleteOne = function(){
-                let passwordCheck = prompt("Please enter the Master Password");
-                if (passwordCheck === masterPassword) {
-                  $('#profile-one').hide();
-                } else {
-                  alert("Incorrect password was entered.");
+              $scope.deleteCommand = function(){
+                console.log(firebaseArr.profiles[0]);
+                let temp = prompt("What is the first name of the player to be removed?");
+                let length = firebaseArr.profiles.length-1;
+                let currentProfiles = firebaseArr.profiles[length];
+                for (var i = 0; i < currentProfiles.length; i++) {
+                  if(currentProfiles[i].firstName === temp){
+                    console.log(currentProfiles[i]);
+                  }
                 }
+            };
+
+              $scope.deleteOne = function(){
+                  $('#profile-one').hide();
               };
 
               $scope.reviveOne = function(){

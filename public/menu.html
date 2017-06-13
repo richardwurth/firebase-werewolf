@@ -7,14 +7,21 @@
     <!-- This label is tied to the checkbox, and it will contain the toggle "buttons" -->
     <label class="toggle-container" for="toggle">
         <!-- If menu is open, it will be the "X" icon, otherwise just a clickable area behind the hamburger menu icon -->
-        <span class="button button-toggle"></span>
+        <span ng-click="menuBackground()" class="button button-toggle"></span>
     </label>
 
     <!-- The nav menu -->
     <nav class="nav">
-        <a ng-click="getRole()" class="nav-item" href="">Get_My_Role</a>
-        <a ng-click="generalTest()" class="nav-item" href="">Admin_Login</a>
-        <a ng-if="timeChangeButton" ng-click="backgroundChange()" class="nav-item" href="">Change to {{timeOfDay}}</a>
-        <a ng-if="addPlayerButton" class="nav-item" href="" ng-click="addProfile(0)">Add_Player</a>
+        <a ng-if="noUsername" ng-click="setUsername()" class="nav-item effect" href="">Join Game</a>
+        <form id="username-form" style="height: 90px" ng-if="settingUsername" class="nav-item" onsubmit="return false;">
+          <input class="creation" type="text" id="usernameInput" placeholder="Username" />
+          <input class="creation" type="text" id="lnInput" placeholder="First Name" />
+          <input class="creation" type="text" id="fnInput" placeholder="Last Name" />
+          <input class="creation" id="usernameInput" type="submit" ng-click="addProfileTest()" />
+        </form>
+        <a ng-if="nonAdmin" ng-click="getRole()" class="nav-item effect" href="">Get_My_Role</a>
+        <a ng-if="nonAdmin" ng-click="generalTest()" class="nav-item effect" href="">Admin_Login</a>
+        <a ng-if="timeChangeButton" ng-click="backgroundChange()" class="nav-item effect" href="">Change to {{timeOfDay}}</a>
+        <a ng-if="addPlayerButton" class="nav-item effect" href="" ng-click="addProfile(0)">Add_Player</a>
     </nav>
 </div>

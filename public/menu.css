@@ -1,6 +1,10 @@
 a {
   text-decoration: none; }
 
+.creation {
+  display: flex;
+  flex-wrap: wrap; }
+
 .container {
   position: absolute;
   margin: 35px auto 0;
@@ -9,7 +13,18 @@ a {
   border-radius: 10px;
   overflow: hidden;
   left: 20px;
-  top: 10px; }
+  top: 10px;
+  z-index: 100; }
+
+.effect {
+  transition: all .5s ease; }
+
+.effect:hover {
+  font-size: 24px;
+  background-color: rgba(140, 140, 140, 0.6);
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bolder; }
 
 /* Toggle functionality */
 #toggle {
@@ -95,7 +110,8 @@ a {
   display: inline-block;
   margin: 25px 25px 20px;
   pointer-events: none;
-  transition: 0.5s; }
+  transition: 0.5s;
+  z-index: 100; }
 
 .nav-item {
   position: relative;
